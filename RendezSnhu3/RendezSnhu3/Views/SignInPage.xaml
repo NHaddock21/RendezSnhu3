@@ -5,38 +5,33 @@
 
 
     <ContentPage.Content>
-
-        <StackLayout Padding="50,110,50,0" BackgroundColor="#1a346f" Spacing="-6">
-            <Frame BackgroundColor="Transparent" HorizontalOptions="Start" Padding="0,0,150,10">
-                <Image Source="signintitle.png"/>
-            </Frame>
-
-            <Frame BackgroundColor="#898989" Padding="25,10,25,10" CornerRadius="5">
-                <Label Text="Username:" TextColor="#1a346f" FontSize="18"/>
-            </Frame>
-            <Frame BackgroundColor="#898989" Padding="25,0,25,10">
-                <Entry/>
-            </Frame>
-            <Frame BackgroundColor="#898989" Padding="25,0,25,10">
-                <Label Text="Password:" TextColor="#1a346f" FontSize="18"/>
-            </Frame>
-            <Frame BackgroundColor="#898989" Padding="25,0,25,10">
-                <Entry/>
-            </Frame>
-           
-            <Frame BackgroundColor="#898989" Padding="0,2,0,10" CornerRadius="5">
-                <Button 
+        <Frame BackgroundColor="#1a346f" HorizontalOptions="Start" CornerRadius="0" >
+            <StackLayout BackgroundColor="Transparent">
+                <Image Source="signintitle.png" Scale=".5"/>
+                <Frame BackgroundColor="#898989" CornerRadius="5" Padding="4">
+                <StackLayout BackgroundColor="Transparent" Spacing="5" Padding="5">           
+ 
+                    <Label Text="Username:" TextColor="#1a346f" FontSize="18"/>
                     
-                    BackgroundColor="#1a346f" VerticalOptions="Center" 
-                    HorizontalOptions="Center" Padding="65,10,65,10" CornerRadius="5"                
-                    Text="Sign In" TextColor="#ebb10e" FontSize="20">
+                    <Entry/>                
+                
+                    <Label Text="Password:" TextColor="#1a346f" FontSize="18"/>
+
+                        <Entry/>
+
+                        <Button 
                     
-                </Button>
-            </Frame>
-            <Frame BackgroundColor="Transparent" Padding="0,15,0,0">
+                            BackgroundColor="#1a346f" VerticalOptions="Center" 
+                            HorizontalOptions="Center" Padding="65,10,65,10" CornerRadius="5"                
+                            Text="Sign In" TextColor="#ebb10e" FontSize="20">   
+
+                        </Button>
+
+
+            </StackLayout>
+                </Frame>
                 <Button BackgroundColor="#00aa1c" Text="Create Account" FontAttributes="Bold" FontSize="20" CornerRadius="5"/>
-            </Frame>
-            
-        </StackLayout>
+            </StackLayout>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>
