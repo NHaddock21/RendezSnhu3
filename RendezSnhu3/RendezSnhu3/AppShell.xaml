@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:RendezSnhu3.Views"
+       x:Class="RendezSnhu3.AppShell">
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="#1a346f" />
+                <Setter Property="Shell.ForegroundColor" Value="#898989" />
+                <Setter Property="Shell.TitleColor" Value="#ebb10e" />
+                <Setter Property="Shell.DisabledColor" Value="#898989" />
+                <Setter Property="Shell.UnselectedColor" Value="#898989" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="#1a346f" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="#898989"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#898989"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="#ebb10e"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+    
+    <TabBar>
+        <Tab Title="Home" FlyoutItem.IsVisible="True"
+            Icon="homebutton.png">
+            <ShellContent ContentTemplate="{DataTemplate views:HomePage}" />
+        </Tab>
+        <Tab Title="Search"
+            Icon="searchbutton.png">
+            <ShellContent ContentTemplate="{DataTemplate views:SearchPage}" />
+        </Tab>
+        <Tab Title="Create Event"
+            Icon="homebutton.png">
+            <ShellContent ContentTemplate="{DataTemplate views:CreateEventPage}" />
+        </Tab>
+        <Tab Title="My Events"
+            Icon="myeventsbutton.png">
+            <ShellContent ContentTemplate="{DataTemplate views:MyEventsPage}" />
+        </Tab>
+        <Tab Title="My Profile"
+            Icon="myprofilebutton.png">
+            <ShellContent ContentTemplate="{DataTemplate views:MyProfilePage}" />
+        </Tab>
+    </TabBar>
+
+    <FlyoutItem>
+        
+    </FlyoutItem>
+
+</Shell>
