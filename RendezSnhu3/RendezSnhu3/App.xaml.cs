@@ -10,10 +10,7 @@ namespace RendezSnhu3
         public App()
         {
             InitializeComponent();
-
-            MainPage = new NavigationPage();
-            
-
+            MainPage = new NavigationPage(new SignInPage());
         }
 
         protected override void OnStart()
