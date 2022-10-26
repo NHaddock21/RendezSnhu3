@@ -11,7 +11,7 @@ namespace RendezSnhu3
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage();
+            MainPage = new SignInPage();
             
 
         }
