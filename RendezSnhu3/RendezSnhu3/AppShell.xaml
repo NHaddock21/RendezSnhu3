@@ -1,8 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:views="clr-namespace:RendezSnhu3.Views"
-       x:Class="RendezSnhu3.AppShell">
+       x:Class="RendezSnhu3.AppShell" Shell.NavBarIsVisible="False"   >
 
     <Shell.Resources>
         <ResourceDictionary>
@@ -21,9 +25,13 @@
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
         </ResourceDictionary>
     </Shell.Resources>
-    
-    <TabBar>
-        <Tab Title="Home" FlyoutItem.IsVisible="True"
+
+    <ShellItem Route="SignInPage">
+        <ShellContent ContentTemplate="{DataTemplate views:SignInPage}"/>
+    </ShellItem>
+
+    <TabBar Route="HomePage">
+        <Tab Title="Home" FlyoutItem.IsVisible="True" 
             Icon="homebutton.png">
             <ShellContent ContentTemplate="{DataTemplate views:HomePage}" />
         </Tab>
@@ -32,7 +40,7 @@
             <ShellContent ContentTemplate="{DataTemplate views:SearchPage}" />
         </Tab>
         <Tab Title="Create Event"
-            Icon="homebutton.png">
+            Icon="createeventbutton.png">
             <ShellContent ContentTemplate="{DataTemplate views:CreateEventPage}" />
         </Tab>
         <Tab Title="My Events"
@@ -45,8 +53,10 @@
         </Tab>
     </TabBar>
 
-    <FlyoutItem>
-        
-    </FlyoutItem>
+    
+
+
+
 
 </Shell>
+    

@@ -13,6 +13,8 @@ namespace RendezSnhu3
         {
             InitializeComponent();
 
+            Routing.RegisterRoute("CreateAccountPage" , typeof(CreateAccountPage));
+
         }
 
     }
