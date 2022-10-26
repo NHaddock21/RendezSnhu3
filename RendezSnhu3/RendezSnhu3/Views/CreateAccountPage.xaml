@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RendezSnhu3.Views.CreateAccountPage"
+             Title="Create Account">
+
+    <ContentPage.Content>
+
+
+
+        <StackLayout Padding="50,70,50,0" BackgroundColor="#1a346f" Spacing="-6">
+
+            <Frame BackgroundColor="Transparent" HorizontalOptions="Start" Padding="0,0,100,10">
+
+                <Image Source="create_account_title.png"/>
+
+            </Frame>
+
+
+
+            <Frame BackgroundColor="#898989" Padding="25,25,25,10">
+
+                <Label Text="First Name:" TextColor="#1a346f" FontSize="18"/>
+
+            </Frame>
+
+            <Frame BackgroundColor="#898989" Padding="25,0,25,10">
+
+                <Entry/>
+
+            </Frame>
+
+            <Frame BackgroundColor="#898989" Padding="25,0,25,10">
+
+                <Label Text="Last Name:" TextColor="#1a346f" FontSize="18"/>
+
+            </Frame>
+
+            <Frame BackgroundColor="#898989" Padding="25,0,25,10">
+
+                <Entry/>
+
+            </Frame>
+
+            <Frame BackgroundColor="#898989" Padding="25,10,25,10" CornerRadius="5">
+
+                <Label Text="Email:" TextColor="#1a346f" FontSize="18"/>
+
+            </Frame>
+
+            <Frame BackgroundColor="#898989" Padding="25,0,25,10">
+
+                <Entry/>
+
+            </Frame>
+
+            <Frame BackgroundColor="#898989" Padding="25,0,25,10">
+
+                <Label Text="Password:" TextColor="#1a346f" FontSize="18"/>
+
+            </Frame>
+
+            <Frame BackgroundColor="#898989" Padding="25,0,25,10">
+
+                <Entry/>
+
+            </Frame>
+
+            <Frame BackgroundColor="#898989" Padding="25,0,25,10">
+
+                <Label Text="Confirm Password:" TextColor="#1a346f" FontSize="18"/>
+
+            </Frame>
+
+            <Frame BackgroundColor="#898989" Padding="25,0,25,35">
+
+                <Entry/>
+
+            </Frame>
+
+
+
+
+
+            <Frame BackgroundColor="Transparent" Padding="0,50,0,0">
+
+                <Button BackgroundColor="#00aa1c" Text="Create Account" FontAttributes="Bold" FontSize="20" CornerRadius="5"
+
+                        Command="{Binding CreateAccountCommand}"/>
+
+            </Frame>
+
+
+
+        </StackLayout>
+
+    </ContentPage.Content>
+
+</ContentPage>

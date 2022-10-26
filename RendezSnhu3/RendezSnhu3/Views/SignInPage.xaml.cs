@@ -15,6 +15,16 @@ namespace RendezSnhu3.Views
         public SignInPage()
         {
             InitializeComponent();
+       
+       
+        }
+        private async void SignInClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync($"//HomePage");
+        }
+        private async void CreateAccountClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync($"//SignInPage/CreateAccountPage");
         }
 
         

@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RendezSnhu3.Views.SearchPage" Title="Search">
+             x:Class="RendezSnhu3.Views.SearchPage" Title="Search"
+             Shell.NavBarIsVisible="True">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Search"
