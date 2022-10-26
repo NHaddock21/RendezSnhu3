@@ -12,11 +12,12 @@
                 <Frame BackgroundColor="#898989" CornerRadius="5" Padding="4">
                 <StackLayout BackgroundColor="Transparent" Spacing="5" Padding="5">           
  
-                    <Label Text="Username:" TextColor="#1a346f" FontSize="18"/>
-                    
-                    <Entry/>                
-                
-                    <Label Text="Password:" TextColor="#1a346f" FontSize="18"/>
+                    <Label Text="Email:" TextColor="#1a346f" FontSize="18"/>
+
+                        <Entry
+                            x:Name= "usernametxt"
+                            MaxLength="30">
+                        </Entry>
 
                         <Entry IsPassword="True"/>
 
@@ -27,6 +28,20 @@
 
                         </Button>
 
+=======
+                            <Label Text="Password:" TextColor="#1a346f" FontSize="18"/>
+
+                            <Entry 
+                            x:Name = "passwordtxt"
+                            MaxLength="20">
+                            </Entry>
+                            <Button 
+                    
+                            BackgroundColor="#1a346f" VerticalOptions="Center" 
+                            HorizontalOptions="Center" Padding="65,10,65,10" CornerRadius="5"                
+                            Text="Sign In" TextColor="#ebb10e" FontSize="20"   
+                            Clicked="SignInClick">
+                        </Button>
             </StackLayout>
                 </Frame>
                 <Button BackgroundColor="#00aa1c" Text="Create Account" FontAttributes="Bold" FontSize="20" CornerRadius="5" Clicked="CreateAccountClicked"/>
@@ -34,3 +49,4 @@
         </Frame>
     </ContentPage.Content>
 </ContentPage>
+    

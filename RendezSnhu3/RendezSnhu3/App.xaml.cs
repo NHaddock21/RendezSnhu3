@@ -12,7 +12,6 @@ namespace RendezSnhu3
             InitializeComponent();
 
             MainPage = new AppShell();
-            
 
         }
 
