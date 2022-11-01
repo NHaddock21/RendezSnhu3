@@ -116,7 +116,8 @@ namespace RendezSnhu3.Views
             }
             else if (!ValidPassword(Passwordtxt.Text))
             {
-                PasswordError.Text = "Password must contain: At least one lower case letter, At least one upper case letter, At least special character, At least one number and At least 8 characters length";
+                PasswordError.TextColor = Color.Red;
+                PasswordError.Text = "Invalid Password!";
             }
             else
             {
