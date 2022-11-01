@@ -1,8 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-
-
-
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:views="clr-namespace:RendezSnhu3.Views"
@@ -12,7 +9,7 @@
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="#1a346f" />
-                <Setter Property="Shell.ForegroundColor" Value="#898989" />
+                <Setter Property="Shell.ForegroundColor" Value="#ebb10e" />
                 <Setter Property="Shell.TitleColor" Value="#ebb10e" />
                 <Setter Property="Shell.DisabledColor" Value="#898989" />
                 <Setter Property="Shell.UnselectedColor" Value="#898989" />
@@ -31,7 +28,7 @@
     </ShellItem>
 
     <TabBar Route="HomePage">
-        <Tab Title="Home" FlyoutItem.IsVisible="True" 
+        <Tab Title="Home"
             Icon="homebutton.png">
             <ShellContent ContentTemplate="{DataTemplate views:HomePage}" />
         </Tab>

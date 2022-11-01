@@ -7,9 +7,11 @@
 
     <ContentPage.Content>
 
+        <ScrollView>
 
 
-        <StackLayout Padding="50,70,50,0" BackgroundColor="#1a346f" Spacing="-6">
+
+            <StackLayout Padding="50,70,50,0" BackgroundColor="#1a346f" Spacing="-6">
 
             <Frame BackgroundColor="Transparent" HorizontalOptions="Start" Padding="0,0,100,10">
 
@@ -25,75 +27,117 @@
 
             </Frame>
 
-            <Frame BackgroundColor="#898989" Padding="25,0,25,10">
+            <Frame BackgroundColor="#898989" Padding="25,0,25,0">
 
-                <Entry x:Name= "fNametxt"/>
+
+                <Entry
+                            x:Name= "FirstNametxt"
+                            MaxLength="20">
+                </Entry>
 
             </Frame>
 
-            <Frame BackgroundColor="#898989" Padding="25,0,25,10">
+                <Frame BackgroundColor="#898989" Padding="25,0,25,20">
+                <Label Text="" TextColor="Red" FontSize="18" x:Name="FirstNameError"/>
+            </Frame>
+
+            <Frame BackgroundColor="#898989" Padding="25,25,25,10">
 
                 <Label Text="Last Name:" TextColor="#1a346f" FontSize="18"/>
 
             </Frame>
 
-            <Frame BackgroundColor="#898989" Padding="25,0,25,10">
+            <Frame BackgroundColor="#898989" Padding="25,0,25,0">
 
-                <Entry x:Name= "lNametxt"/>
+
+                <Entry
+                            x:Name= "LastNametxt"
+                            MaxLength="20">
+                </Entry>
 
             </Frame>
+            
+            <Frame BackgroundColor="#898989" Padding="25,0,25,20">
+                <Label Text="" TextColor="Red" FontSize="18" x:Name="LastNameError"/>
+            </Frame>
+                
 
-            <Frame BackgroundColor="#898989" Padding="25,10,25,10" CornerRadius="5">
+            <Frame BackgroundColor="#898989" Padding="25,25,25,10">
 
                 <Label Text="Email:" TextColor="#1a346f" FontSize="18"/>
 
             </Frame>
 
-            <Frame BackgroundColor="#898989" Padding="25,0,25,10">
+            <Frame BackgroundColor="#898989" Padding="25,0,25,0">
 
-                <Entry x:Name= "emailtxt"/>
+
+                <Entry
+                            x:Name= "Emailtxt"
+                            MaxLength="30">
+                </Entry>
 
             </Frame>
 
-            <Frame BackgroundColor="#898989" Padding="25,0,25,10">
+                <Frame BackgroundColor="#898989" Padding="25,0,25,20">
+                    <Label Text="" TextColor="Red" FontSize="18" x:Name="EmailError"/>
+                </Frame>
+
+                <Frame BackgroundColor="#898989" Padding="25,25,25,10">
 
                 <Label Text="Password:" TextColor="#1a346f" FontSize="18"/>
 
             </Frame>
 
-            <Frame BackgroundColor="#898989" Padding="25,0,25,10">
+            <Frame BackgroundColor="#898989" Padding="25,0,25,0">
 
-                <Entry x:Name= "passwordtxt"/>
+
+                <Entry
+                            x:Name= "Passwordtxt"
+                            MaxLength="30" IsPassword="True">
+                </Entry>
 
             </Frame>
 
-            <Frame BackgroundColor="#898989" Padding="25,0,25,10">
+                <Frame BackgroundColor="#898989" Padding="25,0,25,10">
+                    <Label Text="" TextColor="Red" FontSize="18" x:Name="PasswordError"/>
+                </Frame>
+
+                <Frame BackgroundColor="#898989" Padding="25,25,25,10">
 
                 <Label Text="Confirm Password:" TextColor="#1a346f" FontSize="18"/>
 
             </Frame>
 
-            <Frame BackgroundColor="#898989" Padding="25,0,25,35">
+            <Frame BackgroundColor="#898989" Padding="25,0,25,0">
 
-                <Entry x:Name= "confPasswordtxt"/>
+
+                    <Entry
+                            x:Name= "PasswordMatchtxt"
+                            MaxLength="30" IsPassword="True">
+                    </Entry>
+
+            </Frame>
+
+                <Frame BackgroundColor="#898989" Padding="25,0,25,10">
+                    <Label Text="" TextColor="Red" FontSize="18" x:Name="PasswordMatchError"/>
+                </Frame>
+
+
+
+
+                <Frame BackgroundColor="Transparent">
+
+
+                <Button BackgroundColor="#00aa1c" Text="Submit" FontAttributes="Bold" FontSize="20" CornerRadius="5" 
+                        Clicked="SubmitClicked"/>
 
             </Frame>
 
 
 
+            </StackLayout>
 
-
-            <Frame BackgroundColor="Transparent" Padding="0,50,0,0">
-
-                <Button BackgroundColor="#00aa1c" Text="Create Account" FontAttributes="Bold" FontSize="20" CornerRadius="5" Clicked="CreateAccountClick"
-
-                        Command="{Binding CreateAccountCommand}"/>
-
-            </Frame>
-
-
-
-        </StackLayout>
+        </ScrollView>
 
     </ContentPage.Content>
 
