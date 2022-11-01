@@ -29,6 +29,7 @@
 
             <Frame BackgroundColor="#898989" Padding="25,0,25,0">
 
+
                 <Entry
                             x:Name= "FirstNametxt"
                             MaxLength="20">
@@ -47,6 +48,7 @@
             </Frame>
 
             <Frame BackgroundColor="#898989" Padding="25,0,25,0">
+
 
                 <Entry
                             x:Name= "LastNametxt"
@@ -68,6 +70,7 @@
 
             <Frame BackgroundColor="#898989" Padding="25,0,25,0">
 
+
                 <Entry
                             x:Name= "Emailtxt"
                             MaxLength="30">
@@ -86,6 +89,7 @@
             </Frame>
 
             <Frame BackgroundColor="#898989" Padding="25,0,25,0">
+
 
                 <Entry
                             x:Name= "Passwordtxt"
@@ -106,6 +110,7 @@
 
             <Frame BackgroundColor="#898989" Padding="25,0,25,0">
 
+
                     <Entry
                             x:Name= "PasswordMatchtxt"
                             MaxLength="30" IsPassword="True">
@@ -121,6 +126,7 @@
 
 
                 <Frame BackgroundColor="Transparent">
+
 
                 <Button BackgroundColor="#00aa1c" Text="Submit" FontAttributes="Bold" FontSize="20" CornerRadius="5" 
                         Clicked="SubmitClicked"/>

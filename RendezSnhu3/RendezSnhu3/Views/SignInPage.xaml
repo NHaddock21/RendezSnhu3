@@ -24,7 +24,8 @@
 
                             <Entry 
                             x:Name = "passwordtxt"
-                            MaxLength="20">
+                            MaxLength="20"
+                            IsPassword="True">
                             </Entry>
  
                         <Button 
