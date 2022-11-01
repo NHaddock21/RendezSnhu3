@@ -19,17 +19,7 @@
                             MaxLength="30">
                         </Entry>
 
-                        <Entry IsPassword="True"/>
-
-                        <Button                     
-                            BackgroundColor="#1a346f" VerticalOptions="Center" 
-                            HorizontalOptions="Center" Padding="65,10,65,10" CornerRadius="5"                
-                            Text="Sign In" TextColor="#ebb10e" FontSize="20" Clicked="SignInClicked">  
-
-                        </Button>
-
-=======
-                            <Label Text="Password:" TextColor="#1a346f" FontSize="18"/>
+                        <Label Text="Password:" TextColor="#1a346f" FontSize="18"/>
 
                             <Entry 
                             x:Name = "passwordtxt"
@@ -40,7 +30,7 @@
                             BackgroundColor="#1a346f" VerticalOptions="Center" 
                             HorizontalOptions="Center" Padding="65,10,65,10" CornerRadius="5"                
                             Text="Sign In" TextColor="#ebb10e" FontSize="20"   
-                            Clicked="SignInClick">
+                            Clicked="SignInClicked">
                         </Button>
             </StackLayout>
                 </Frame>
