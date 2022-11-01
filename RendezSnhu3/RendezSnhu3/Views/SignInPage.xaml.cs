@@ -23,8 +23,11 @@ namespace RendezSnhu3.Views
         public SignInPage()
         {
             InitializeComponent();
-       
-       
+            MessagingCenter.Subscribe<CreateAccountPage>(this, "Hi", (sender) => {
+                Notificationtxt.Text = "Account Successfully Created!";
+            });
+
+
         }
         private async void SignInClicked(object sender, EventArgs e)
         {
@@ -45,6 +48,7 @@ namespace RendezSnhu3.Views
                 usernametxt.Text = "";
                 passwordtxt.Text = "";
                 _ = data.UserLogIn(emailtxt, passtxt);
+
                 
             }
         }
