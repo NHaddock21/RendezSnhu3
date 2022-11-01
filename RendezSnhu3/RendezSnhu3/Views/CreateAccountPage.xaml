@@ -27,7 +27,7 @@
 
             <Frame BackgroundColor="#898989" Padding="25,0,25,10">
 
-                <Entry/>
+                <Entry x:Name= "fNametxt"/>
 
             </Frame>
 
@@ -39,7 +39,7 @@
 
             <Frame BackgroundColor="#898989" Padding="25,0,25,10">
 
-                <Entry/>
+                <Entry x:Name= "lNametxt"/>
 
             </Frame>
 
@@ -51,7 +51,7 @@
 
             <Frame BackgroundColor="#898989" Padding="25,0,25,10">
 
-                <Entry/>
+                <Entry x:Name= "emailtxt"/>
 
             </Frame>
 
@@ -63,7 +63,7 @@
 
             <Frame BackgroundColor="#898989" Padding="25,0,25,10">
 
-                <Entry/>
+                <Entry x:Name= "passwordtxt"/>
 
             </Frame>
 
@@ -75,7 +75,7 @@
 
             <Frame BackgroundColor="#898989" Padding="25,0,25,35">
 
-                <Entry/>
+                <Entry x:Name= "confPasswordtxt"/>
 
             </Frame>
 
@@ -85,7 +85,7 @@
 
             <Frame BackgroundColor="Transparent" Padding="0,50,0,0">
 
-                <Button BackgroundColor="#00aa1c" Text="Create Account" FontAttributes="Bold" FontSize="20" CornerRadius="5"
+                <Button BackgroundColor="#00aa1c" Text="Create Account" FontAttributes="Bold" FontSize="20" CornerRadius="5" Clicked="CreateAccountClick"
 
                         Command="{Binding CreateAccountCommand}"/>
 

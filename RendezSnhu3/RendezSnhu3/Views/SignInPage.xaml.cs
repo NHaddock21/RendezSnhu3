@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using RendezSnhu3;
+﻿using RendezSnhu3;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,35 +17,32 @@ namespace RendezSnhu3.Views
     public partial class SignInPage : ContentPage
     {
 
-        DatabaseConnection datacheck = new DatabaseConnection();
         Data data = new Data();
         public SignInPage()
         {
             InitializeComponent();
+        
        
-       
         }
-        private async void SignInClicked(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync($"//HomePage");
-        }
-        private async void CreateAccountClicked(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync($"//SignInPage/CreateAccountPage");
-        }
-
-        private void SignInClick(object sender, EventArgs e)
+        private async void SignInClick(object sender, EventArgs e)
         {
             if (usernametxt.Text != null & passwordtxt.Text != null)
             {
 
                 string emailtxt = usernametxt.Text.ToString();
                 string passtxt = passwordtxt.Text.ToString();
+                Console.WriteLine(emailtxt);
+                Console.WriteLine(passtxt);
+
                 usernametxt.Text = "";
                 passwordtxt.Text = "";
-                _ = data.UserLogIn(emailtxt, passtxt);
-                
+                await data.UserLogIn(emailtxt, passtxt);
+
             }
+        }
+        private async void CreateAccountClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync($"//SignInPage/CreateAccountPage");
         }
     }
 }
