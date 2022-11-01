@@ -1,75 +1,110 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:RendezSnhu3.ViewModel"
              x:Class="RendezSnhu3.Views.CreateEventPage" Title="Create Event"
-             Shell.NavBarIsVisible="True">
+             Shell.NavBarIsVisible="True" 
+             x:DataType="local:CreateEventPageViewModel"
+             xmlns:ViewModel="clr-namespace:RendezSnhu3.ViewModel"
+             xmlns:Model="clr-namespace:RendezSnhu3.Model">
+
+
+    <ContentPage.BindingContext>
+        <ViewModel:CreateEventPageViewModel/>
+    </ContentPage.BindingContext>
+
+
     <ContentPage.Content>
-        <Frame BackgroundColor="Gray">          
-        <StackLayout Spacing="-6">
+        <Frame BackgroundColor="Gray" CornerRadius="0">
+            <StackLayout Spacing="-6">
                 <Frame BackgroundColor="White" CornerRadius="5" Padding="25,25,0,0">
                     <Grid>
+
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/> <!--Row 0-->
+                            <RowDefinition Height="40"/> <!--Row 1-->
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="85" />
-                            <ColumnDefinition Width="225" />
+                            <ColumnDefinition Width="85" /> <!--Column 0-->
+                            <ColumnDefinition Width="225" /> <!--Column 1-->
                         </Grid.ColumnDefinitions>
+                        
                         <Label Grid.Row="0" Grid.Column="0" Text="Event Name: " VerticalOptions="Center" TextColor="Black" />
                         <Label Grid.Row="1" Grid.Column="0" Text="Location: "  VerticalOptions="Center" TextColor="Black"/>
-                        <Entry Grid.Row="0" Grid.Column="1" />
-                        <Entry Grid.Row="1" Grid.Column="1" />                        
+                        <Entry Text="{Binding Event.Name}" Grid.Row="0" Grid.Column="1" />
+                        <Entry Text="{Binding Event.Location}" Grid.Row="1" Grid.Column="1" />   
+                        
                     </Grid>
                 </Frame>
                 <Frame CornerRadius="0" Padding="0,0,0,0">
                     <Grid>
+                        
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/> <!--Row 0-->
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="50"/>
-                            <ColumnDefinition Width="240"/>
-                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="50"/> <!--Column 0-->
+                            <ColumnDefinition Width="240"/> <!--Column 1-->
+                            <ColumnDefinition Width="25"/> <!--Column 2-->
                         </Grid.ColumnDefinitions>
+                        
                         <Label Grid.Row="0" Grid.Column="1" Text="Has location been scheduled with appropriate people?" FontSize="10" VerticalOptions="Center"/>
                         <CheckBox Grid.Row="0" Grid.Column="2" Color="#1a346f"/>
+                        
                     </Grid>
                 </Frame>
                 <Frame CornerRadius="0" Padding="25,10,0,0">
                     <Grid>
+                        
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="100"/> <!--Row 0-->
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="85"/>
-                            <ColumnDefinition Width="225"/>
+                            <ColumnDefinition Width="85"/> <!--Column 0-->
+                            <ColumnDefinition Width="225"/> <!--Column 1-->
                         </Grid.ColumnDefinitions>
+                        
                         <Label Grid.Row="0" Grid.Column="0" Text="Description: " VerticalOptions="Start" Padding="0,9,0,0" TextColor="Black"/>
                         <Editor Grid.Row="0" Grid.Column="1" Placeholder="/begin typing/" FontSize="13" PlaceholderColor="Gray" />
+                        
                     </Grid>
                 </Frame>
                 <Frame>
                     <Grid>
+                        
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/> <!--Row 0-->
+                            <RowDefinition Height="40"/> <!--Row 1-->
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="85"/>
-                            <ColumnDefinition Width="85"/>
-                            <ColumnDefinition Width="35"/>
-                            <ColumnDefinition Width="85"/>
+                            <ColumnDefinition Width="50"/> <!--Column 0-->
+                            <ColumnDefinition Width="100"/> <!--Column 1-->
+                            <ColumnDefinition Width="35"/> <!--Column 2-->
+                            <ColumnDefinition Width="50"/> <!--Column 3-->
+                            <ColumnDefinition Width="5"/> <!--Column 4-->
+                            <ColumnDefinition Width="50"/> <!--Column 5-->
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Text="Date: " VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
-                        <Entry Grid.Row="0" Grid.Column="1" Placeholder="xx/xx/xxxx" FontSize="13" HorizontalTextAlignment="Center"/>
+                        
+                        <Label Grid.Row="0" Grid.Column="0" Text="Date: " VerticalOptions="Center" HorizontalOptions="Center" TextColor="Black"/>
+                        <Entry Text="{Binding Event.Date}" Grid.Row="0" Grid.Column="1" Placeholder="xx/xx/xxxx" FontSize="13" HorizontalTextAlignment="Center"/>
                         <Label Grid.Row="0" Grid.Column="2" Text="Time: " VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black"/>
-                        <Entry Grid.Row="0" Grid.Column="3" Placeholder="xx:xx" FontSize="13" HorizontalTextAlignment="Center" />
+                        <Entry Text="{Binding Event.StartTime}" Grid.Row="0" Grid.Column="3" Placeholder="xx:xx" FontSize="13" HorizontalTextAlignment="Center" />
+                        <Label Grid.Column="4" Grid.Row="0"  Text="-" VerticalTextAlignment="Center" FontSize="Large"/>
+                        <Entry Text="{Binding Event.EndTime}" Grid.Row="0" Grid.Column="5" Placeholder="UTC" FontSize="13" HorizontalTextAlignment="Center" />
                         <Label Grid.Row="1" Grid.Column="0" Text="Category: " VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
-                        <Entry Grid.Row="1" Grid.Column="1" Placeholder="xx/xx/xxxx" FontSize="13" HorizontalTextAlignment="Center"/>
+                        <Picker Grid.Row="1" Grid.Column="1" x:Name="CategoryEntry" 
+                                Title="Select Category" FontSize="13" HorizontalTextAlignment="Center"/>
                         <Label Grid.Row="1" Grid.Column="2" Text="Max: " VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black"/>
-                        <Entry Grid.Row="1" Grid.Column="3" Placeholder="xx:xx" FontSize="13" HorizontalTextAlignment="Center" />
+                        <Entry Text="{Binding Event.Max}" Grid.Row="1" Grid.Column="3" Placeholder="20" FontSize="13" HorizontalTextAlignment="Center" />
+                        
                     </Grid>
+                </Frame>
+                <Frame CornerRadius="5">
+                    <Button
+                            BackgroundColor="#1a346f" VerticalOptions="Center" 
+                            HorizontalOptions="Center" Padding="65,10,65,10" CornerRadius="5"                
+                            Text="Create Event" TextColor="#ebb10e" FontSize="20" Command="{Binding PostEvent}">
+                    </Button>
                 </Frame>
             </StackLayout>
         </Frame>
