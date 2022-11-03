@@ -10,6 +10,7 @@ using RendezSnhu3.ViewModel;
 using Xamarin.Forms.Xaml;
 using System.Xml.Linq;
 using RendezSnhu3.Services;
+using System.Runtime.InteropServices;
 
 namespace RendezSnhu3.Views
 {
@@ -45,7 +46,9 @@ namespace RendezSnhu3.Views
 
         public bool ValidEmail(string email)
         {
-            if (email.Contains("@snhu.edu"))
+            var emailtxt = email;
+            var emailPattern = new Regex("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])");
+            if (emailPattern.IsMatch(email) && email.Contains("@snhu.edu"))
             {
                 return true;
             }
@@ -109,7 +112,7 @@ namespace RendezSnhu3.Views
             }
             else if (!ValidEmail(Emailtxt.Text))
             {
-                EmailError.Text = "Error Email Must containt @snhu.edu";
+                EmailError.Text = "Error Email Must be a valid SNHU Email";
             }
             else
             {
@@ -122,7 +125,8 @@ namespace RendezSnhu3.Views
             }
             else if (!ValidPassword(Passwordtxt.Text))
             {
-                PasswordError.Text = "Password must contain: At least one lower case letter, At least one upper case letter, At least special character, At least one number and At least 8 characters length";
+                PasswordError.TextColor = Color.Red;
+                PasswordError.Text = "Invalid Password!";
             }
             else
             {

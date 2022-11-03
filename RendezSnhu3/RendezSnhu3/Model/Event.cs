@@ -35,24 +35,18 @@ namespace RendezSnhu3.Model
         {
             get => category; set { category = value; OnPropertyChanged(nameof(Category)); }
         }
-        string date;
-        public string Date
+
+        DateTime date;
+        public DateTime Date
         {
             get { return date; }
             set { date = value; OnPropertyChanged(nameof(Date)); }
         }
-        string sTime;
-        public string StartTime
-        {
-            get { return sTime; }
-            set { sTime = value; OnPropertyChanged(nameof(StartTime)); }
-        }
-        string eTime;
-        public string EndTime
-        {
-            get { return eTime; }
-            set { eTime = value; OnPropertyChanged(nameof(EndTime)); }
-        }
+
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+
+   
         string max;
         public string Max
         {
@@ -62,14 +56,9 @@ namespace RendezSnhu3.Model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+
         void OnPropertyChanged(string name) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
-
-        public void SetProperty(string prop, string val)
-        {
-
-        }
 
         public void ClearFields()
         {
@@ -77,11 +66,8 @@ namespace RendezSnhu3.Model
             Location = string.Empty;
             Image = string.Empty;
             Category = string.Empty;
-            Date = string.Empty;
-            StartTime = string.Empty;
-            EndTime = string.Empty;
             Max = string.Empty;
-            
+                        
         }
 
     }

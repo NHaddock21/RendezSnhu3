@@ -78,5 +78,10 @@ namespace RendezSnhu3.Services
 
             await data.InsertAsync(user);
         }
+
+        public static async Task ForgotPassword(string email)
+        {
+            await Init();
+        }
     }
 }
