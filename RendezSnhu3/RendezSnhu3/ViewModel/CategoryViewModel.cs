@@ -14,9 +14,11 @@ namespace RendezSnhu3.ViewModel
         {
             try
             {
-                CatList = new ObservableCollection<Category>();
-                CatList.Add(new Category { CategoryId = 1, CategoryName = "Sports" });
-                CatList.Add(new Category { CategoryId = 2, CategoryName = "Gaming" });
+                CatList = new ObservableCollection<Category>
+                {
+                    new Category { CategoryId = 1, CategoryName = "Sports" },
+                    new Category { CategoryId = 2, CategoryName = "Gaming" }
+                };
 
 
             }
