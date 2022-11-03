@@ -8,8 +8,8 @@
             xmlns:ViewModel="clr-namespace:RendezSnhu3.ViewModel" 
             xmlns:Model="clr-namespace:RendezSnhu3.Model"    
             x:DataType="ViewModel:HomePageViewModel"
-            BackgroundColor="Gray" Shell.NavBarIsVisible="True" Title="Home">
-
+            BackgroundColor="Gray" Shell.NavBarIsVisible="True" Title="Home">  
+    
     <ContentPage.BindingContext>
         <ViewModel:HomePageViewModel />
     </ContentPage.BindingContext>
@@ -19,11 +19,11 @@
             <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-
+<!--
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="filtersbutton.png"/>
+        <ToolbarItem Text="Add" Command="{Binding AddCommand}"/>
     </ContentPage.ToolbarItems>
-
+-->
 
     <ListView
         BackgroundColor="Transparent"
@@ -60,18 +60,18 @@
                                         FontSize="Medium"
                                         Text="{Binding Location}"
                                         VerticalOptions="Center" />
-                                    <Label
-                                        FontSize="Subtitle"
-                                        Text="{Binding Date, StringFormat='{}{0:ddd, MMM dd, yy}'}"
-                                        VerticalOptions="End" />
                                 </StackLayout>
                                 <Label
                                         FontSize="Subtitle"
-                                        Text="{Binding StartTime, StringFormat='{}{0:h:mm tt} -'}"
+                                        Text="{Binding Date}"
                                         VerticalOptions="End" />
                                 <Label
                                         FontSize="Subtitle"
-                                        Text="{Binding EndTime, StringFormat='{}{0:h:mm tt}'}"
+                                        Text="{Binding StartTime}"
+                                        VerticalOptions="End" />
+                                <Label
+                                        FontSize="Subtitle"
+                                        Text="{Binding EndTime}"
                                         VerticalOptions="End" />
                             </StackLayout>
                         </Frame>

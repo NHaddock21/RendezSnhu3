@@ -99,7 +99,7 @@
             </Frame>
 
                 <Frame BackgroundColor="#898989" Padding="25,0,25,10">
-                    <Label Text="(Must contain at least: 1 lower case letter, 1 upper case letter, 1 special character, 1 number and 8 characters in length)" TextColor="#1a346f" FontSize="18" x:Name="PasswordError"/>
+                    <Label Text="" TextColor="Red" FontSize="18" x:Name="PasswordError"/>
                 </Frame>
 
                 <Frame BackgroundColor="#898989" Padding="25,25,25,10">

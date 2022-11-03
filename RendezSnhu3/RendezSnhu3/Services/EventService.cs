@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
-using Xamarin.Forms;
+using Org.BouncyCastle.Crypto.Tls;
 
 namespace RendezSnhu3.Services
 {
@@ -26,7 +26,7 @@ namespace RendezSnhu3.Services
             await db.CreateTableAsync<Event>();
         }
 
-        public static async Task AddEvent(string name, string location, string category, DateTime date, DateTime sTime, DateTime eTime, string max)
+        public static async Task AddEvent(string name, string location, string date, string sTime, string eTime, string max)
         {
             await Init();
             var image = "";
@@ -41,7 +41,6 @@ namespace RendezSnhu3.Services
                 Date = date,
                 StartTime = sTime,
                 EndTime = eTime,
-                Category = category,
                 Max = max
 
 
