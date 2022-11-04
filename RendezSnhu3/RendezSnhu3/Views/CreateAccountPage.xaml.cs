@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-
+using RendezSnhu3.Model;
 using Xamarin.Forms;
+using RendezSnhu3.ViewModel;
 using Xamarin.Forms.Xaml;
 using System.Xml.Linq;
+using RendezSnhu3.Services;
 using System.Runtime.InteropServices;
 
 namespace RendezSnhu3.Views
@@ -76,6 +78,10 @@ namespace RendezSnhu3.Views
 
         private async void SubmitClicked(object sender, EventArgs e)
         {
+            string firstName = "";
+            string lastName = "";
+            string email = "" ;
+            string password = "";
             if (FirstNametxt.Text == null)
             {
                 FirstNameError.Text = "Error First Name Required";
@@ -141,6 +147,12 @@ namespace RendezSnhu3.Views
             if (FirstNametxt.Text != null && LastNametxt.Text != null && Emailtxt != null && Passwordtxt != null && PasswordMatchtxt != null && ValidFirstName(FirstNametxt.Text) == true && 
                 ValidLastName(LastNametxt.Text) == true && ValidEmail(Emailtxt.Text) == true && ValidPassword(Passwordtxt.Text) == true && PasswordMatch(Passwordtxt.Text, PasswordMatchtxt.Text) == true)
             {
+                firstName = FirstNametxt.Text;
+                lastName = LastNametxt.Text;
+                email = Emailtxt.Text;
+                password = Passwordtxt.Text;
+
+                await Database.UserCreateAccount(firstName, lastName, email, password);
                 await Shell.Current.GoToAsync($"//SignInPage");
                 MessagingCenter.Send<CreateAccountPage>(this, "Hi");
             }
