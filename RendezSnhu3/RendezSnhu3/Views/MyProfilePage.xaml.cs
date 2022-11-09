@@ -23,6 +23,7 @@ namespace RendezSnhu3.Views
             if (answer)
             {
                 await Shell.Current.GoToAsync($"//SignInPage");
+                MessagingCenter.Send<MyProfilePage>(this, "Clear");
             }
         }
     }
