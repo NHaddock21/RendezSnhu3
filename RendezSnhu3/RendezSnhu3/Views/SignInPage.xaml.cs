@@ -30,12 +30,10 @@ namespace RendezSnhu3.Views
                 Notificationtxt.TextColor = Color.Red;
                 Notificationtxt.Text = "Incorrect Email or Password";
             });
-            MessagingCenter.Subscribe<MyProfilePage>(this, "Clear", (sender) => {
-                Notificationtxt.Text = "";
-            });
         }
         private async void CreateAccountClicked(object sender, EventArgs e)
         {
+            Notificationtxt.Text = "";
             await Shell.Current.GoToAsync($"//SignInPage/CreateAccountPage");
         }
 
@@ -47,6 +45,7 @@ namespace RendezSnhu3.Views
                 string passtxt = passwordtxt.Text.ToString();
                 usernametxt.Text = "";
                 passwordtxt.Text = "";
+                Notificationtxt.Text = "";
                 await data.UserLogIn(emailtxt, passtxt);
             }
             else if (usernametxt.Text == null || passwordtxt.Text == null)
