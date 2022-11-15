@@ -68,11 +68,15 @@ namespace RendezSnhu3.Model
 
         public void ClearFields()
         {
+
             Name = string.Empty;
             Location = string.Empty;
             Image = string.Empty;
             Category = string.Empty;
             Max = string.Empty;
+            Date = default;
+            StartTime = default;
+            EndTime = default;
                         
         }
 

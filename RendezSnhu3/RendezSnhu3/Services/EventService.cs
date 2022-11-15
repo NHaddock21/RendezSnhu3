@@ -30,8 +30,36 @@ namespace RendezSnhu3.Services
         {
             await Init();
             var image = "";
-           
+
+            if (category == "Gaming")
+            {
                 image = "https://www.freepnglogos.com/uploads/games-png/games-controller-game-icon-17.png";
+            }
+            else if (category == "Sports")
+            {
+                image = "https://www.clipartqueen.com/image-files/soccer-ball-clipart.png";
+            }
+            else if (category == "Leisure")
+            {
+                image = "https://i.pinimg.com/originals/cd/49/2b/cd492bad710672736c6349d50911eadc.png";
+            }
+            else if (category == "Business")
+            {
+                image = "https://www.nicepng.com/png/detail/21-218731_handshake-vector-png-clipart-black-and-white-library.png";
+            }
+            else if (category == "Music")
+            {
+                image = "https://static.thenounproject.com/png/1247867-200.png";
+            }
+            else if (category == "Art")
+            {
+                image = "https://cdn-icons-png.flaticon.com/512/103/103461.png";
+            }
+            else if (category == "Nature")
+            {
+                image = "https://cdn-icons-png.flaticon.com/512/1561/1561127.png";
+            }
+
 
             var events = new Event
             {
