@@ -1,13 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RendezSnhu3.Views.SearchPage" Title="Search"
-             Shell.NavBarIsVisible="True">
+             x:Class="RendezSnhu3.Views.SearchPage"
+             Shell.NavBarIsVisible="False">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Search"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <SearchBar Placeholder="Search items..." />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
