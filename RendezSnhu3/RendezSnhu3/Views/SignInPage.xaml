@@ -22,10 +22,11 @@
 
                         <Label Text="Password:" TextColor="#1a346f" FontSize="18"/>
 
-                            <Entry 
+                        <Entry 
                             x:Name = "passwordtxt"
-                            MaxLength="20">
-                            </Entry>
+                            MaxLength="20"
+                            IsPassword="True">
+                        </Entry>
  
                         <Button 
                     

@@ -16,5 +16,14 @@ namespace RendezSnhu3.Views
         {
             InitializeComponent();
         }
+
+        private async void LogoutClicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Are you sure you want to logout?","You will be returned to the login screen.","Yes", "No");
+            if (answer)
+            {
+                await Shell.Current.GoToAsync($"//SignInPage");
+            }
+        }
     }
 }

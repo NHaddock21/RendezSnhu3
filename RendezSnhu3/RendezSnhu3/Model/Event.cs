@@ -60,12 +60,6 @@ namespace RendezSnhu3.Model
         void OnPropertyChanged(string name) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
-
-        public void SetProperty(string prop, string val)
-        {
-
-        }
-
         public void ClearFields()
         {
             Name = string.Empty;
