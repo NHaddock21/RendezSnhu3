@@ -58,7 +58,6 @@ namespace RendezSnhu3.ViewModel
         }
 
 
-
     }
 
 }
