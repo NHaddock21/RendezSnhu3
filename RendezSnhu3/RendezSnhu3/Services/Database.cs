@@ -1,4 +1,5 @@
 ﻿using RendezSnhu3.Model;
+using RendezSnhu3.Views;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -40,8 +41,10 @@ namespace RendezSnhu3.Services
             var result = await query.ToListAsync();
 
             if (result.Count != 0)
+            {
                 userEmail = result[0].Email;
                 userPass = result[0].Password;
+            }
             //userPass = db.QueryAsync<Users>("select password from users where email = ?", email).ToString();
 
             Console.WriteLine(userEmail);
@@ -49,7 +52,7 @@ namespace RendezSnhu3.Services
 
             if (userEmail == null)
             {
-                Console.WriteLine("Error");
+                MessagingCenter.Send<Database>(this, "Error");
                 return;
             }
             else
@@ -60,7 +63,8 @@ namespace RendezSnhu3.Services
                 }
                 else
                 {
-                    Console.WriteLine("Error password stupid");
+                    MessagingCenter.Send<Database>(this, "Error");
+                    
                 }
             }
         }

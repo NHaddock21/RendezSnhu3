@@ -23,11 +23,17 @@ namespace RendezSnhu3.Views
         {
             InitializeComponent();
             MessagingCenter.Subscribe<CreateAccountPage>(this, "Hi", (sender) => {
+                Notificationtxt.TextColor = Color.Green;
                 Notificationtxt.Text = "Account Successfully Created!";
+            });
+            MessagingCenter.Subscribe<Database>(this, "Error", (sender) => {
+                Notificationtxt.TextColor = Color.Red;
+                Notificationtxt.Text = "Incorrect Email or Password";
             });
         }
         private async void CreateAccountClicked(object sender, EventArgs e)
         {
+            Notificationtxt.Text = "";
             await Shell.Current.GoToAsync($"//SignInPage/CreateAccountPage");
         }
 
@@ -39,7 +45,13 @@ namespace RendezSnhu3.Views
                 string passtxt = passwordtxt.Text.ToString();
                 usernametxt.Text = "";
                 passwordtxt.Text = "";
+                Notificationtxt.Text = "";
                 await data.UserLogIn(emailtxt, passtxt);
+            }
+            else if (usernametxt.Text == null || passwordtxt.Text == null)
+            {
+                Notificationtxt.TextColor = Color.Red;
+                Notificationtxt.Text = "Please Fill Out Both Fields";
             }
         }
     }
