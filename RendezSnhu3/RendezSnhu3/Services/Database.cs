@@ -1,9 +1,12 @@
 ﻿using RendezSnhu3.Model;
+using RendezSnhu3.ViewModel;
 using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -14,18 +17,23 @@ namespace RendezSnhu3.Services
     internal class Database
     {
         static SQLiteAsyncConnection data;
-
+        int userID;
         static async Task Init()
         {
+
+            //Checks if data location already assigned
             if (data != null)
                 return;
-            
+
+            //Assigns if not
             var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData.db");
 
             data = new SQLiteAsyncConnection(databasePath);
 
             await data.CreateTableAsync<Users>();
-            
+            await data.CreateTableAsync<UserSettings>();
+            await data.CreateTableAsync<UserToEvents>();
+
         }
 
         public async Task UserLogIn(string email, string pass)
@@ -40,8 +48,10 @@ namespace RendezSnhu3.Services
             var result = await query.ToListAsync();
 
             if (result.Count != 0)
+            {
                 userEmail = result[0].Email;
                 userPass = result[0].Password;
+            }
             //userPass = db.QueryAsync<Users>("select password from users where email = ?", email).ToString();
 
             Console.WriteLine(userEmail);
@@ -56,6 +66,10 @@ namespace RendezSnhu3.Services
             {
                 if (userPass == pass)
                 {
+                    List<string> emailList = new List<string>();
+                    emailList.Add(userEmail);
+                    SendEmail se = new SendEmail();
+                    se.Email(email);
                     await Shell.Current.GoToAsync($"//HomePage");
                 }
                 else
@@ -65,7 +79,7 @@ namespace RendezSnhu3.Services
             }
         }
 
-        public static async Task UserCreateAccount(string fname, string lname, string email, string password)
+        public async Task UserCreateAccount(string fname, string lname, string email, string password)
         {
             await Init();
             var user = new Users
@@ -75,7 +89,8 @@ namespace RendezSnhu3.Services
                 Email = email,
                 Password = password
             };
-
+            SendEmail se = new SendEmail();
+            se.Email(email); 
             await data.InsertAsync(user);
         }
 
@@ -83,5 +98,41 @@ namespace RendezSnhu3.Services
         {
             await Init();
         }
+        
+
+        public async Task<List<UserToEvents>> GetIfRSVP (int eventID)
+        {
+            await Init(); 
+            var query = data.Table<UserToEvents>().Where(s => s.EventID.Equals(eventID)).Where( m => m.UserID.Equals(userID));
+            var result = await query.ToListAsync();
+            return result;
+        }
+
+        public async Task SetRSVP(int eventID)
+        {
+            await Init();
+            var RSVP = new UserToEvents
+            {
+                UserID = userID,
+                EventID = eventID,
+            };
+            await data.InsertAsync(RSVP);
+        }
+
+        public async Task UnRSVP(int eventID)
+        {
+            await Init();
+            var RSVP = new UserToEvents
+            {
+                UserID = userID,
+                EventID = eventID,
+            };
+            await data.DeleteAsync(RSVP);
+        }
+
+
     }
 }
+
+//Get Each part of an event
+// var query = data.Table<Event>().Where(s => s.ID.Equals(ID));
