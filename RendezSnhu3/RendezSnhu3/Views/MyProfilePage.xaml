@@ -4,10 +4,15 @@
              x:Class="RendezSnhu3.Views.MyProfilePage" Title="My Profile" 
              Shell.NavBarIsVisible="True">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="50,70,50,25">
             <Label Text="My Profile"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <Button Text="Logout"
+                    Font="18"
+                    FontAttributes="Bold"
+                    BackgroundColor="red"
+                    Clicked="LogoutClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
