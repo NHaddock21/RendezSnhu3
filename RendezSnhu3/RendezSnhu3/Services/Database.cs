@@ -149,11 +149,11 @@ namespace RendezSnhu3.Services
             var events = await data.Table<Event>().Where(s => s.Owner.Equals(userID)).ToListAsync();
             return events;
         }
-        public static async Task<IEnumerable<Event>> RSVPedEvents()
+        public async Task<List<UserToEvents>> RSVPedEvents(int eventID)
         {
             await Init();
 
-            var events = data.Table<UserToEvents>().Where(s => s.EventID.Equals(eventID)).Where(m => m.UserID.Equals(userID));
+            var events = await data.Table<UserToEvents>().Where(m => m.UserID.Equals(userID)).ToListAsync();
 
             return events;
         }
