@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Java.Sql;
+using Android.Media;
 
 namespace RendezSnhu3.Services
 {
@@ -29,8 +31,9 @@ namespace RendezSnhu3.Services
         public static async Task AddEvent(string name, string location, string category, DateTime date, DateTime sTime, DateTime eTime, string max)
         {
             await Init();
+            Database database= new Database();
             var image = "";
-           
+                
                 image = "https://www.freepnglogos.com/uploads/games-png/games-controller-game-icon-17.png";
 
             var events = new Event
@@ -42,9 +45,9 @@ namespace RendezSnhu3.Services
                 StartTime = sTime,
                 EndTime = eTime,
                 Category = category,
-                Max = max
-
-
+                Max = max,
+                Owner = database.getUserID(),
+                Passed = false
             };
 
             var id = await db.InsertAsync(events);
@@ -62,7 +65,52 @@ namespace RendezSnhu3.Services
         {
             await Init();
 
-            var events = await db.Table<Event>().ToListAsync();
+            var events = await db.Table<Event>().Where(s => s.Passed == false).ToListAsync();
+            
+            if (events.Count > 1) {
+                for (int i = 0; i < events.Count; i++)
+                {
+                    for (int j = 0; j < events.Count - 1; j++)
+                    {
+                        if (events[j].Date < DateTime.Now)
+                        {
+                            events[j].Passed = true;
+                            await db.InsertOrReplaceAsync(events[j]);
+                            events.RemoveAt(j);
+                        }
+                        else if (events[j].Date == DateTime.Now)
+                        {
+                            if (events[j].StartTime < DateTime.Now)
+                            {
+                                events[j].Passed = true;
+                                await db.InsertOrReplaceAsync(events[j]);
+                                events.RemoveAt(j);
+                            }
+                            else
+                            {
+                                if (events[j].StartTime > events[j + 1].StartTime)
+                                {
+                                    (events[j], events[j + 1]) = (events[j + 1], events[j]);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (events[j].Date > events[j + 1].Date)
+                            {
+                                (events[j], events[j + 1]) = (events[j + 1], events[j]);
+                            }
+                            else if (events[j].Date == events[j+1].Date) 
+                            {
+                                if (events[j].StartTime > events[j + 1].StartTime)
+                                {
+                                    (events[j], events[j + 1]) = (events[j + 1], events[j]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             return events;
         }
 
@@ -74,5 +122,6 @@ namespace RendezSnhu3.Services
             return events;
         }
 
+        
     }
 }

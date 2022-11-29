@@ -1,27 +1,32 @@
-﻿using RendezSnhu3.Model;
-<<<<<<< HEAD
+﻿using Java.Sql;
+using RendezSnhu3.Model;
 using RendezSnhu3.ViewModel;
-=======
 using RendezSnhu3.Views;
->>>>>>> 714c5a824b2c90ad52110ea629f328d65f829afc
 using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using static Android.Provider.CalendarContract;
 
 namespace RendezSnhu3.Services
 {
     internal class Database
     {
         static SQLiteAsyncConnection data;
-        int userID;
+        public static int userID;
+
+        public int getUserID()
+        {
+            return userID;
+        }
         static async Task Init()
         {
 
@@ -70,10 +75,11 @@ namespace RendezSnhu3.Services
             {
                 if (userPass == pass)
                 {
+                    userID = result[0].UserID;
                     List<string> emailList = new List<string>();
                     emailList.Add(userEmail);
                     SendEmail se = new SendEmail();
-                    se.Email(email);
+                   // se.Email(emailList);
                     await Shell.Current.GoToAsync($"//HomePage");
                 }
                 else
@@ -94,8 +100,10 @@ namespace RendezSnhu3.Services
                 Email = email,
                 Password = password
             };
-            SendEmail se = new SendEmail();
-            se.Email(email); 
+            List<string> emailList = new List<string>();
+            emailList.Add(email);
+            //SendEmail se = new SendEmail();
+            //se.Email(emailList); 
             await data.InsertAsync(user);
         }
 
@@ -134,6 +142,79 @@ namespace RendezSnhu3.Services
             };
             await data.DeleteAsync(RSVP);
         }
+        public static async Task<IEnumerable<Event>> HostedEvents()
+        {
+            await Init();
+
+            var events = await data.Table<Event>().Where(s => s.Owner.Equals(userID)).ToListAsync();
+            return events;
+        }
+        public static async Task<IEnumerable<Event>> CategoryList(List<string> categories)
+        {
+            await Init();
+            List<Event> results = null;
+            if (categories != null)
+            {
+                for (int i = 0; i < categories.Count; i++)
+                {
+                    var events = await data.Table<Event>().Where(s => s.Category.Equals(categories[i])).Where(s => s.Passed == false).ToListAsync();
+                    results.AddRange(events);
+                }
+                if (results.Count > 1)
+                {
+                    for (int i = 0; i < results.Count; i++)
+                    {
+                        for (int j = 0; j < results.Count - 1; j++)
+                        {
+                            if (results[j].Date < DateTime.Now)
+                            {
+                                results[j].Passed = true;
+                                await data.InsertOrReplaceAsync(results[j]);
+                                results.RemoveAt(j);
+                            }
+                            else if (results[j].Date == DateTime.Now)
+                            {
+                                if (results[j].StartTime < DateTime.Now)
+                                {
+                                    results[j].Passed = true;
+                                    await data.InsertOrReplaceAsync(results[j]);
+                                    results.RemoveAt(j);
+                                }
+                                else
+                                {
+                                    if (results[j].StartTime > results[j + 1].StartTime)
+                                    {
+                                        (results[j], results[j + 1]) = (results[j + 1], results[j]);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (results[j].Date > results[j + 1].Date)
+                                {
+                                    (results[j], results[j + 1]) = (results[j + 1], results[j]);
+                                }
+                                else if (results[j].Date == results[j + 1].Date)
+                                {
+                                    if (results[j].StartTime > results[j + 1].StartTime)
+                                    {
+                                        (results[j], results[j + 1]) = (results[j + 1], results[j]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                results = await data.Table<Event>().Where(s => s.Passed == false).ToListAsync();
+            }
+
+            return results;
+        }
+
+
 
 
     }

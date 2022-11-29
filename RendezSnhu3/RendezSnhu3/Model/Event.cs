@@ -1,4 +1,5 @@
-﻿using Java.Sql;
+﻿using Android.Media;
+using Java.Sql;
 using MvvmHelpers;
 using SQLite;
 using System;
@@ -55,11 +56,17 @@ namespace RendezSnhu3.Model
             set { max = value; OnPropertyChanged(nameof(Max)); }
         }
 
-        IBlob picture;
-        public IBlob Picture
+        int owner;
+        public int Owner
         {
-            get { return picture; }
-            set { picture = value; OnPropertyChanged(nameof(Picture));  }
+            get { return owner; }
+            set { owner= value; OnPropertyChanged(nameof(Owner));}
+        }
+        bool passed;
+        public bool Passed
+        {
+            get { return passed; }
+            set { passed = value; OnPropertyChanged(nameof(Passed)); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
