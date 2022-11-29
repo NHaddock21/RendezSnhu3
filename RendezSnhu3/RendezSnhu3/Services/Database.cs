@@ -79,13 +79,13 @@ namespace RendezSnhu3.Services
                     List<string> emailList = new List<string>();
                     emailList.Add(userEmail);
                     SendEmail se = new SendEmail();
-                   // se.Email(emailList);
+                    // se.Email(emailList);
                     await Shell.Current.GoToAsync($"//HomePage");
                 }
                 else
                 {
                     MessagingCenter.Send<Database>(this, "Error");
-                    
+
                 }
             }
         }
@@ -111,12 +111,12 @@ namespace RendezSnhu3.Services
         {
             await Init();
         }
-        
 
-        public async Task<List<UserToEvents>> GetIfRSVP (int eventID)
+
+        public async Task<List<UserToEvents>> GetIfRSVP(int eventID)
         {
-            await Init(); 
-            var query = data.Table<UserToEvents>().Where(s => s.EventID.Equals(eventID)).Where( m => m.UserID.Equals(userID));
+            await Init();
+            var query = data.Table<UserToEvents>().Where(s => s.EventID.Equals(eventID)).Where(m => m.UserID.Equals(userID));
             var result = await query.ToListAsync();
             return result;
         }
@@ -149,6 +149,15 @@ namespace RendezSnhu3.Services
             var events = await data.Table<Event>().Where(s => s.Owner.Equals(userID)).ToListAsync();
             return events;
         }
+        public static async Task<IEnumerable<Event>> RSVPedEvents()
+        {
+            await Init();
+
+            var events = data.Table<UserToEvents>().Where(s => s.EventID.Equals(eventID)).Where(m => m.UserID.Equals(userID));
+
+            return events;
+        }
+
         public static async Task<IEnumerable<Event>> CategoryList(List<string> categories)
         {
             await Init();
@@ -213,9 +222,6 @@ namespace RendezSnhu3.Services
 
             return results;
         }
-
-
-
 
     }
 }
