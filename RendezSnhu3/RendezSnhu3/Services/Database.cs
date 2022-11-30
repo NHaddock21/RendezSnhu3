@@ -1,9 +1,6 @@
-﻿using RendezSnhu3.Model;
-<<<<<<< HEAD
+using RendezSnhu3.Model;
 using RendezSnhu3.ViewModel;
-=======
 using RendezSnhu3.Views;
->>>>>>> 714c5a824b2c90ad52110ea629f328d65f829afc
 using SQLite;
 using System;
 using System.Collections.Generic;
