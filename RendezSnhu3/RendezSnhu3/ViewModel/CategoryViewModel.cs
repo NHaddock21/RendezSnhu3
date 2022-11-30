@@ -24,7 +24,7 @@ namespace RendezSnhu3.ViewModel
             }
             catch (Exception ex)
             {
-
+                throw ex;
             }
         }
 

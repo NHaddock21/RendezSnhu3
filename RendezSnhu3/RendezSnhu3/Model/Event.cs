@@ -1,4 +1,5 @@
-﻿using MvvmHelpers;
+using Java.Sql;
+using MvvmHelpers;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,13 @@ namespace RendezSnhu3.Model
             set { max = value; OnPropertyChanged(nameof(Max)); }
         }
 
+        IBlob picture;
+        public IBlob Picture
+        {
+            get { return picture; }
+            set { picture = value; OnPropertyChanged(nameof(Picture));  }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
 
@@ -68,10 +76,11 @@ namespace RendezSnhu3.Model
             Image = string.Empty;
             Category = string.Empty;
             Max = string.Empty;
+
             Date = default;
             StartTime = default;
             EndTime = default;
-                        
+
         }
 
     }
