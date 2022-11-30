@@ -2,6 +2,7 @@
 using MvvmHelpers.Commands;
 using RendezSnhu3.Model;
 using RendezSnhu3.Services;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;

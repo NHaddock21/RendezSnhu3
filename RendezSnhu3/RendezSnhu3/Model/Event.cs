@@ -1,4 +1,4 @@
-﻿using Java.Sql;
+using Java.Sql;
 using MvvmHelpers;
 using SQLite;
 using System;
@@ -70,11 +70,17 @@ namespace RendezSnhu3.Model
 
         public void ClearFields()
         {
+
             Name = string.Empty;
             Location = string.Empty;
             Image = string.Empty;
             Category = string.Empty;
             Max = string.Empty;
+
+            Date = default;
+            StartTime = default;
+            EndTime = default;
+
         }
 
     }

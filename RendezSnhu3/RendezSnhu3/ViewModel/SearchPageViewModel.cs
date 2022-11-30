@@ -5,6 +5,7 @@ using RendezSnhu3.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -13,15 +14,41 @@ namespace RendezSnhu3.ViewModel
 {
     internal class SearchPageViewModel : BaseViewModel
     {
-        public ObservableRangeCollection<Event> Event { get; set; }
-        public AsyncCommand RefreshCommand { get; }
+        public ObservableRangeCollection<Event> Events { get; set; }
 
-        async void OnTextChanged(object sender, EventArgs e)
+        public SearchPageViewModel()
         {
-            SearchBar searchBar = (SearchBar)sender;
-            var events = await EventService.SearchGetEvent(searchBar.Text);
-            Event.AddRange(events);
+
+            Events = new ObservableRangeCollection<Event>();
+
+ 
         }
-       
+
+        async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var searchTerm = e.NewTextValue;
+
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                searchTerm = string.Empty;
+            }
+
+            searchTerm = searchTerm.ToLowerInvariant();
+
+            var filteredEvents = await EventService.SearchGetEvent(searchTerm);
+
+            foreach (var value in Events)
+            {
+
+                if (!filteredEvents.Contains(value))
+                {
+                    Events.Remove(value);
+                }
+                else if (!Events.Contains(value))
+                {
+                    Events.Add(value);
+                }
+            }
+        }
     }
 }
