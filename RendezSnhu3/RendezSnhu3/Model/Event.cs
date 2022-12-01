@@ -1,4 +1,4 @@
-using Java.Sql;
+
 using MvvmHelpers;
 using SQLite;
 using System;
@@ -55,12 +55,12 @@ namespace RendezSnhu3.Model
             set { max = value; OnPropertyChanged(nameof(Max)); }
         }
 
-        IBlob picture;
-        public IBlob Picture
+        //IBlob picture;
+        /*public IBlob Picture
         {
             get { return picture; }
             set { picture = value; OnPropertyChanged(nameof(Picture));  }
-        }
+        }*/
 
         public event PropertyChangedEventHandler PropertyChanged;
 

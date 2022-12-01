@@ -37,8 +37,7 @@
                             Command="{Binding Source={x:Reference EventsPage}, Path=BindingContext.RemoveCommand}"
                             CommandParameter="{Binding .}"
                             IsDestructive="True"
-                            Text="Delete" 
-                            Clicked="ItemClicked"/>
+                            Text="Delete" />
                     </ViewCell.ContextActions>
                     <Grid Padding="5">
                         <Frame CornerRadius="20" HasShadow="True" Padding="3">
