@@ -18,8 +18,12 @@ namespace RendezSnhu3.Views
             InitializeComponent();
         }
 
-        
+        private async void ItemClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync($"//HomePage/ShowEventPage");
+        }
 
-       
+
+
     }
 }
