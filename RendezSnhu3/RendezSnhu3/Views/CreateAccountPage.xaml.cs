@@ -151,8 +151,8 @@ namespace RendezSnhu3.Views
                 lastName = LastNametxt.Text;
                 email = Emailtxt.Text;
                 password = Passwordtxt.Text;
-
-                await Database.UserCreateAccount(firstName, lastName, email, password);
+                Database data = new Database();
+                await data.UserCreateAccount(firstName, lastName, email, password);
                 await Shell.Current.GoToAsync($"//SignInPage");
                 MessagingCenter.Send<CreateAccountPage>(this, "Hi");
             }
