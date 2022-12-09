@@ -27,7 +27,8 @@
         RefreshCommand="{Binding RefreshCommand}"
         RefreshControlColor="#1a346f"
         SelectionMode="None"
-        SeparatorVisibility="None">
+        SeparatorVisibility="None"
+        ItemTapped="EventSelected">
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="Model:Event">
                 <ViewCell>
