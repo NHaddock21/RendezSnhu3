@@ -1,86 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RendezSnhu3.Views.SearchPage"
-             Shell.NavBarIsVisible="False"
-             xmlns:ViewModel="clr-namespace:RendezSnhu3.ViewModel" 
-            xmlns:Model="clr-namespace:RendezSnhu3.Model"    
-            x:DataType="ViewModel:SearchPageViewModel"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
-            x:Name="EventsPage">
+             xmlns:Model="clr-namespace:RendezSnhu3.Model"
+             x:Class="RendezSnhu3.Views.SearchPage">
 
-    <ContentPage.BindingContext>
-        <ViewModel:SearchPageViewModel />
-    </ContentPage.BindingContext>
+    <StackLayout>
+        
+        <SearchBar TextChanged="SearchBar_TextChanged" />
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
-    <ContentPage.Content>
-        <StackLayout>
-            <SearchBar Placeholder="Search items..." TextChanged="OnTextChanged" />
-
-            <ListView
-        x:Name="searchResults"
-        BackgroundColor="Transparent"
-        CachingStrategy="RecycleElement"
-        HasUnevenRows="True"
-         
-        IsPullToRefreshEnabled="True"
-        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-        ItemsSource="{Binding Event}"
-        RefreshCommand="{Binding RefreshCommand}"
-        RefreshControlColor="#1a346f"
-        SelectionMode="None"
-        SeparatorVisibility="None">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="Model:Event">
-                        <ViewCell>
-                            <ViewCell.ContextActions>
-                                <!--for testing - delete from final-->
-                                <MenuItem
-                            Command="{Binding Source={x:Reference EventsPage}, Path=BindingContext.RemoveCommand}"
-                            CommandParameter="{Binding .}"
-                            IsDestructive="True"
-                            Text="Delete" />
-                            </ViewCell.ContextActions>
-                            <Grid Padding="5">
-                                <Frame CornerRadius="20" HasShadow="True" Padding="3">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Image Source="{Binding Image}" WidthRequest="44" />
-                                        <StackLayout VerticalOptions="Center">
-                                            <Label
+        <ListView ItemsSource="{Binding Events}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="Model:Event">
+                    <ViewCell>
+                        <Grid Padding="5">
+                            <Frame CornerRadius="20" HasShadow="True" Padding="3">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding Image}" WidthRequest="44" />
+                                    <StackLayout VerticalOptions="Center">
+                                        <Label
                                         FontSize="Large"
                                         Text="{Binding Name}"
                                         VerticalOptions="Center" />
-                                            <Label
+                                        <Label
                                         FontSize="Medium"
                                         Text="{Binding Location}"
                                         VerticalOptions="Center" />
-                                            <Label
+                                        <Label
                                         FontSize="Subtitle"
                                         Text="{Binding Date, StringFormat='{}{0:ddd, MMM dd, yy}'}"
                                         VerticalOptions="End" />
-                                        </StackLayout>
-                                        <Label
+                                    </StackLayout>
+                                    <Label
                                         FontSize="Subtitle"
                                         Text="{Binding StartTime, StringFormat='{}{0:h:mm tt} -'}"
                                         VerticalOptions="End" />
-                                        <Label
+                                    <Label
                                         FontSize="Subtitle"
                                         Text="{Binding EndTime, StringFormat='{}{0:h:mm tt}'}"
                                         VerticalOptions="End" />
-                                    </StackLayout>
-                                </Frame>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 
-    </ContentPage.Content>
 </ContentPage>

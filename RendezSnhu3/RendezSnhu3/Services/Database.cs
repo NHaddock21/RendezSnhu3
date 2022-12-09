@@ -1,9 +1,6 @@
-﻿using RendezSnhu3.Model;
-<<<<<<< HEAD
+using RendezSnhu3.Model;
 using RendezSnhu3.ViewModel;
-=======
 using RendezSnhu3.Views;
->>>>>>> 714c5a824b2c90ad52110ea629f328d65f829afc
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -73,7 +70,7 @@ namespace RendezSnhu3.Services
                     List<string> emailList = new List<string>();
                     emailList.Add(userEmail);
                     SendEmail se = new SendEmail();
-                    se.Email(email);
+                    //se.Email(email);
                     await Shell.Current.GoToAsync($"//HomePage");
                 }
                 else

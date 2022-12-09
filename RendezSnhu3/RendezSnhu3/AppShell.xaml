@@ -17,6 +17,7 @@
                 <Setter Property="Shell.TabBarForegroundColor" Value="#898989"/>
                 <Setter Property="Shell.TabBarUnselectedColor" Value="#898989"/>
                 <Setter Property="Shell.TabBarTitleColor" Value="#ebb10e"/>
+
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
@@ -49,9 +50,6 @@
             <ShellContent ContentTemplate="{DataTemplate views:MyProfilePage}" />
         </Tab>
     </TabBar>
-
-    
-
 
 
 
