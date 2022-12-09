@@ -222,8 +222,16 @@ namespace RendezSnhu3.Services
 
             return results;
         }
-
+        public async Task<int> RSVPCount(int eventID)
+        {
+            var events = await data.Table<UserToEvents>().Where(s => s.EventID.Equals(eventID)).ToListAsync();
+            return events.Count;
+        }
     }
+
+    
+
+
 }
 
 //Get Each part of an event
