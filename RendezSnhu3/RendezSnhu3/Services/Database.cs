@@ -70,7 +70,7 @@ namespace RendezSnhu3.Services
                     List<string> emailList = new List<string>();
                     emailList.Add(userEmail);
                     SendEmail se = new SendEmail();
-                    se.Email(email);
+                    //se.Email(email);
                     await Shell.Current.GoToAsync($"//HomePage");
                 }
                 else
