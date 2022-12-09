@@ -1,6 +1,4 @@
-﻿using Android.Graphics;
-using Android.Widget;
-using Plugin.Media;
+﻿
 using RendezSnhu3.Model;
 using RendezSnhu3.Services;
 using System;
@@ -56,7 +54,7 @@ namespace RendezSnhu3.ViewModel
 
         }
 
-        async void UploadPhoto()
+        /*async void UploadPhoto()
         {
             await CrossMedia.Current.Initialize();
 
@@ -74,7 +72,7 @@ namespace RendezSnhu3.ViewModel
             byte[] imageArray = System.IO.File.ReadAllBytes(file.Path);
             Bitmap bitmap = BitmapFactory.DecodeByteArray(imageArray, 0, imageArray.Length);
             //ImageView.SetImageBitmap(bitmap);
-        }   
+        }*/   
 
 
     }

@@ -14,6 +14,7 @@ namespace RendezSnhu3
             InitializeComponent();
 
             Routing.RegisterRoute("CreateAccountPage" , typeof(CreateAccountPage));
+            Routing.RegisterRoute("ShowEventPage", typeof(ShowEventPage));
 
         }
 

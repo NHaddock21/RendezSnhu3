@@ -1,4 +1,4 @@
-﻿using Java.Sql;
+using Java.Sql;
 using RendezSnhu3.Model;
 using RendezSnhu3.ViewModel;
 using RendezSnhu3.Views;
