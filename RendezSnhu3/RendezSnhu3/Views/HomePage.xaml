@@ -28,7 +28,8 @@
         RefreshControlColor="#1a346f"
         SelectionMode="None"
         SeparatorVisibility="None"
-        ItemTapped="EventSelected">
+        ItemTapped="EventSelected"
+        x:Name="{Binding ID}">
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="Model:Event">
                 <ViewCell>
@@ -40,8 +41,8 @@
                             IsDestructive="True"
                             Text="Delete" />
                     </ViewCell.ContextActions>
-                    <Grid Padding="5">
-                        <Frame CornerRadius="20" HasShadow="True" Padding="3">
+                    <Grid Padding="5" ClassId="{Binding Id}">
+                        <Frame CornerRadius="20" HasShadow="True" Padding="3" >
                             <StackLayout Orientation="Horizontal">
                                 <Image Source="{Binding Image}" WidthRequest="44" />
                                 <StackLayout VerticalOptions="Center">

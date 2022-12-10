@@ -65,7 +65,7 @@
                         </Grid.ColumnDefinitions>
                         
                         <Label Grid.Row="0" Grid.Column="0" Text="Description: " VerticalOptions="Start" Padding="0,9,0,0" TextColor="Black"/>
-                        <Editor Grid.Row="0" Grid.Column="1" Placeholder="/begin typing/" FontSize="13" PlaceholderColor="Gray" />
+                        <Editor Grid.Row="0" Grid.Column="1" Placeholder="/begin typing/" FontSize="13" Text="{Binding Event.Description}" PlaceholderColor="Gray" />
                         
                     </Grid>
                 </Frame>

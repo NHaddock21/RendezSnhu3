@@ -7,8 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Java.Sql;
-using Android.Media;
+
 
 namespace RendezSnhu3.Services
 {
@@ -28,7 +27,7 @@ namespace RendezSnhu3.Services
             await db.CreateTableAsync<Event>();
         }
 
-        public static async Task AddEvent(string name, string location, string category, DateTime date, DateTime sTime, DateTime eTime, string max)
+        public static async Task AddEvent(string name, string location, string description, string category, DateTime date, DateTime sTime, DateTime eTime, string max)
         {
             await Init();
             Database database= new Database();
@@ -69,6 +68,7 @@ namespace RendezSnhu3.Services
                 Name = name,
                 Location = location,
                 Image = image,
+                Description = description,
                 Date = date,
                 StartTime = sTime,
                 EndTime = eTime,

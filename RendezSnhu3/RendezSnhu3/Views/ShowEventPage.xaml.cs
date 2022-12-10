@@ -15,6 +15,11 @@ namespace RendezSnhu3.Views
         public ShowEventPage()
         {
             InitializeComponent();
+
+        }
+        private async void RSVPButton(object sender, EventArgs e)
+        {
+
         }
     }
 }

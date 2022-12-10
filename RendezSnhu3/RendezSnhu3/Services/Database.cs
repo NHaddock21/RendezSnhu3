@@ -1,4 +1,3 @@
-using Java.Sql;
 using RendezSnhu3.Model;
 using RendezSnhu3.ViewModel;
 using RendezSnhu3.Views;
@@ -14,7 +13,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using static Android.Provider.CalendarContract;
 
 namespace RendezSnhu3.Services
 {
@@ -22,10 +20,15 @@ namespace RendezSnhu3.Services
     {
         static SQLiteAsyncConnection data;
         public static int userID;
+        public static string viewEventId;
 
         public int getUserID()
         {
             return userID;
+        }
+        public void SetEventID(string ID)
+        {
+            viewEventId = ID;
         }
         static async Task Init()
         {
@@ -113,32 +116,35 @@ namespace RendezSnhu3.Services
         }
 
 
-        public async Task<List<UserToEvents>> GetIfRSVP(int eventID)
+        public async Task<bool> GetIfRSVP()
         {
-            await Init();
-            var query = data.Table<UserToEvents>().Where(s => s.EventID.Equals(eventID)).Where(m => m.UserID.Equals(userID));
-            var result = await query.ToListAsync();
-            return result;
+            var query = data.Table<UserToEvents>().Where(s => s.EventID.Equals(int.Parse(viewEventId))).Where(m => m.UserID.Equals(userID));
+            var result = query.ToListAsync();
+            if (result == null)
+            {
+                return await Task.FromResult(false);
+            }
+            return await Task.FromResult(true);
         }
 
-        public async Task SetRSVP(int eventID)
+        public async Task SetRSVP()
         {
             await Init();
             var RSVP = new UserToEvents
             {
                 UserID = userID,
-                EventID = eventID,
+                EventID = int.Parse(viewEventId),
             };
             await data.InsertAsync(RSVP);
         }
 
-        public async Task UnRSVP(int eventID)
+        public async Task UnRSVP()
         {
             await Init();
             var RSVP = new UserToEvents
             {
                 UserID = userID,
-                EventID = eventID,
+                EventID = int.Parse(viewEventId),
             };
             await data.DeleteAsync(RSVP);
         }
@@ -222,14 +228,35 @@ namespace RendezSnhu3.Services
 
             return results;
         }
-        public async Task<int> RSVPCount(int eventID)
+        public async Task<int> RSVPCount()
         {
-            var events = await data.Table<UserToEvents>().Where(s => s.EventID.Equals(eventID)).ToListAsync();
+            await Init();
+            var events = await data.Table<UserToEvents>().Where(s => s.EventID.Equals(viewEventId)).ToListAsync();
             return events.Count;
         }
+
+        public async Task SetEvent()
+        {
+            ViewEvent viewEvent = new ViewEvent();
+
+            var query = data.Table<Event>().Where(s => s.Id.Equals(viewEventId));
+            var result = await query.ToListAsync();
+            viewEvent.Id = result[0].Id;
+            viewEvent.Name = result[0].Name;
+            viewEvent.Location= result[0].Location;
+            viewEvent.Image = result[0].Image;
+            viewEvent.Category = result[0].Category;
+            viewEvent.Date= result[0].Date;
+            viewEvent.StartTime= result[0].StartTime;
+            viewEvent.EndTime = result[0].EndTime;
+            viewEvent.Max = result[0].Max;
+            viewEvent.Owner= result[0].Owner;
+            viewEvent.Passed= result[0].Passed;
+        }
+
     }
 
-    
+
 
 
 }

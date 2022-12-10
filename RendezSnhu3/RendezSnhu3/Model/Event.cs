@@ -1,5 +1,3 @@
-using Android.Media;
-using Java.Sql;
 using MvvmHelpers;
 using SQLite;
 using System;
@@ -32,6 +30,13 @@ namespace RendezSnhu3.Model
             get { return image; }
             set { image = value; OnPropertyChanged(nameof(Image)); }
         }
+        string description;
+        public string Description
+        {
+            get { return description; }
+            set { description= value; OnPropertyChanged(nameof(Description));}
+        }
+
         string category;
         public string Category
         {
@@ -48,7 +53,7 @@ namespace RendezSnhu3.Model
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
-   
+
         string max;
         public string Max
         {
@@ -80,6 +85,7 @@ namespace RendezSnhu3.Model
 
             Name = string.Empty;
             Location = string.Empty;
+            Description = string.Empty;
             Image = string.Empty;
             Category = string.Empty;
             Max = string.Empty;
