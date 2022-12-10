@@ -29,7 +29,6 @@
         SelectionMode="None"
         SeparatorVisibility="None"
         ItemTapped="EventSelected"
-        x:Name="{Binding ID}">
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="Model:Event">
                 <ViewCell>
