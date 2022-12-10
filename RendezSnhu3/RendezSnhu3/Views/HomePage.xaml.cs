@@ -21,11 +21,12 @@ namespace RendezSnhu3.Views
         }
         Database db = new Database();
         Event e = new Event();  
-        private async void EventSelected(object sender, EventArgs e)
+        private async void EventSelected(object sender, ItemTappedEventArgs e)
         {
-            Button eventClicked = sender as Button;
-            db.SetEventID(sender.ToString()); ;
-            await db.SetEvent();
+            ListView eventClicked = sender as ListView;
+            var device = e.Item as Event;
+            db.SetEventID(device.Id.ToString());
+            db.SetEvent(device.Id, device.Name, device.Location, device.Image, device.Category, device.Date, device.StartTime, device.EndTime, device.Max, device.Owner, device.Passed);
             await Shell.Current.GoToAsync($"//HomePage/ShowEventPage");
         }
 

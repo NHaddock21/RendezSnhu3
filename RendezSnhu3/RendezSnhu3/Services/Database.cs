@@ -21,6 +21,7 @@ namespace RendezSnhu3.Services
         static SQLiteAsyncConnection data;
         public static int userID;
         public static string viewEventId;
+        public ViewEvent viewEvent = new ViewEvent();
 
         public int getUserID()
         {
@@ -231,27 +232,23 @@ namespace RendezSnhu3.Services
         public async Task<int> RSVPCount()
         {
             await Init();
-            var events = await data.Table<UserToEvents>().Where(s => s.EventID.Equals(viewEventId)).ToListAsync();
+            var events = await data.Table<UserToEvents>().Where(s => s.EventID.Equals(int.Parse(viewEventId))).ToListAsync();
             return events.Count;
         }
 
-        public async Task SetEvent()
+        public void SetEvent(int id, string name, string location, string image, string category, DateTime date, DateTime startTime, DateTime endTime, string max, int owner, bool passed )
         {
-            ViewEvent viewEvent = new ViewEvent();
-
-            var query = data.Table<Event>().Where(s => s.Id.Equals(viewEventId));
-            var result = await query.ToListAsync();
-            viewEvent.Id = result[0].Id;
-            viewEvent.Name = result[0].Name;
-            viewEvent.Location= result[0].Location;
-            viewEvent.Image = result[0].Image;
-            viewEvent.Category = result[0].Category;
-            viewEvent.Date= result[0].Date;
-            viewEvent.StartTime= result[0].StartTime;
-            viewEvent.EndTime = result[0].EndTime;
-            viewEvent.Max = result[0].Max;
-            viewEvent.Owner= result[0].Owner;
-            viewEvent.Passed= result[0].Passed;
+            viewEvent.Id = id ;
+            viewEvent.Name = name;
+            viewEvent.Location= location;
+            viewEvent.Image = image;
+            viewEvent.Category = category;
+            viewEvent.Date= date;
+            viewEvent.StartTime= startTime;
+            viewEvent.EndTime = endTime;
+            viewEvent.Max = max;
+            viewEvent.Owner= owner;
+            viewEvent.Passed= passed;
         }
 
     }

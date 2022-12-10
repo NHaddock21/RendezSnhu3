@@ -11,7 +11,6 @@ namespace RendezSnhu3.Model
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-
         string name;
         public string Name
         {
@@ -68,11 +67,7 @@ namespace RendezSnhu3.Model
             set { owner= value; OnPropertyChanged(nameof(Owner));}
         }
         bool passed;
-        public bool Passed
-        {
-            get { return passed; }
-            set { passed = value; OnPropertyChanged(nameof(Passed)); }
-        }
+        public bool Passed { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

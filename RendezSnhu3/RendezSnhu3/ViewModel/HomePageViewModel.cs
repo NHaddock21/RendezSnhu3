@@ -22,7 +22,6 @@ namespace RendezSnhu3.ViewModel
         {
             Event = new ObservableRangeCollection<Event>();
 
-
             RefreshCommand = new AsyncCommand(Refresh);
             //AddCommand = new AsyncCommand(Add);
             RemoveCommand = new AsyncCommand<Event>(Remove);

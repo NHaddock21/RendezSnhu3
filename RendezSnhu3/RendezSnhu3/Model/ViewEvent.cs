@@ -8,60 +8,114 @@ namespace RendezSnhu3.Model
 {
     class ViewEvent
     {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-        public string Location { get; set; }
-       
-       
-        public string Image{get; set;}
-       
-        public string Description { get; set; }
-       
-        public string Category { get; set; }
-
-        public DateTime Date { get; set; }
-
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-        public string FullTime;
-        public void SetFullTime(DateTime start, DateTime end)
+        int id;
+        public int Id
         {
-            FullTime = start.ToString() + " - " + end.ToString();
+            get { return id; }
+            set { id = value; }
         }
-        public string RSVPButtonText;
+        string name;
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        string location;
+        public string Location
+        {
+            get { return location; }
+            set { location = value; }
+        }
+        string image;
+        public string Image
+        {
+            get { return image; }
+            set { image = value; }
+        }
+        string description;
+        public string Description
+        {
+            get { return description; }
+            set { description = value; }
+        }
+        string category;
+        public string Category
+        {
+            get { return category; }
+            set { category = value; }
+        }
+        DateTime date;
+        public DateTime Date
+        {
+            get { return date; }
+            set { date = value; }
+        }
+        DateTime startTime;
+
+        public DateTime StartTime
+        {
+            get { return startTime; }
+            set { startTime = value; }
+        }
+        DateTime endTime;
+        public DateTime EndTime
+        {
+            get { return endTime; }
+            set { endTime = value; }
+        }
+        string fullTime;
+        public string FullTime
+        {
+            get { return fullTime; }
+            set { fullTime = startTime.ToString() +" - " + endTime.ToString(); }
+        }
+
+        string RSVPbuttonText;
         Database db = new Database();
-        public void SetRSVPText()
+        public string RSVPButtonText
         {
-            var RSVP = db.GetIfRSVP();
-            if (RSVP.Result)
+            get { return RSVPbuttonText; }
+            set 
             {
-                RSVPButtonText = "UnRSVP";
-            }
-            else
-            {
-                RSVPButtonText = "RSVP";
+                bool Rsvp = db.GetIfRSVP().Result;
+                if (Rsvp)
+                {
+                    RSVPbuttonText = "UnRSVP";
+                }
+                else
+                {
+                    RSVPbuttonText = "RSVP";
+                }
             }
         }
+        string max;
         public string Max
         {
-            get; set;
+            get { return max; }
+            set { max = value; }
         }
 
-        public string RSVPCount;
-
-        public void CountRSVP()
+        string RSVPCount;
+        public int count;
+        public int Count
         {
-            Task<int> count = db.RSVPCount();
-            RSVPCount= count.ToString();
+            get { return count; }
+            set 
+            { 
+                count = db.RSVPCount().Result; 
+            }
         }
+        int owner;
         public int Owner
         {
-            get; set;
+            get { return owner; }
+            set { owner = value; }
         }
+        bool passed;
         public bool Passed
         {
-            get; set;
+            get { return passed ; }
+            set { passed = value; }
         }
     }
 }
