@@ -26,7 +26,7 @@ namespace RendezSnhu3.Views
             ListView eventClicked = sender as ListView;
             var device = e.Item as Event;
             db.SetEventID(device.Id.ToString());
-            db.SetEvent(device.Id, device.Name, device.Location, device.Image, device.Category, device.Date, device.StartTime, device.EndTime, device.Max, device.Owner, device.Passed);
+            db.SetEvent(device.Id, device.Name, device.Location, device.Image, device.Description, device.Category, device.Date, device.StartTime, device.EndTime, device.Max, device.Owner, device.Passed);
             await Shell.Current.GoToAsync($"//HomePage/ShowEventPage");
         }
 

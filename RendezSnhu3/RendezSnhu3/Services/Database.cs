@@ -236,20 +236,46 @@ namespace RendezSnhu3.Services
             return events.Count;
         }
 
-        public void SetEvent(int id, string name, string location, string image, string category, DateTime date, DateTime startTime, DateTime endTime, string max, int owner, bool passed )
+        static int eventid;
+        static string eventName;
+        static string eventLocation;
+        static string eventImage;
+        static string eventDescription;
+        static string eventCategory;
+        static DateTime eventDate;
+        static DateTime eventStartTime;
+        static DateTime eventEndTime;
+        static string eventMax;
+        static int eventOwner;
+        static bool eventPassed;
+        
+        public void SetEvent(int id, string name, string location, string image, string description, string category, DateTime date, DateTime startTime, DateTime endTime, string max, int owner, bool passed )
         {
-            viewEvent.Id = id ;
-            viewEvent.Name = name;
-            viewEvent.Location= location;
-            viewEvent.Image = image;
-            viewEvent.Category = category;
-            viewEvent.Date= date;
-            viewEvent.StartTime= startTime;
-            viewEvent.EndTime = endTime;
-            viewEvent.Max = max;
-            viewEvent.Owner= owner;
-            viewEvent.Passed= passed;
+
+            eventid = id ;
+            eventName = name;
+            eventLocation = location;
+            eventImage = image;
+            eventDescription = description;
+            eventCategory = category;
+            eventDate = date;
+            eventStartTime= startTime;
+            eventEndTime = endTime;
+            eventMax = max;
+            eventOwner = owner;
+            eventPassed = passed;
         }
+
+        public string GeteventName(){return eventName;}
+
+        public string GeteventLocation() { return eventLocation; }
+        public string GeteventImage() { return eventImage; }
+        public string GeteventDescription() { return eventDescription; }
+        public string GeteventCategory() { return eventCategory; }
+        public string GeteventDate() { return eventDate.ToString(); }
+        public string GetFullTime() { return eventStartTime.ToString() + " - " + eventEndTime.ToString(); }
+        public string GetEventMax() { return eventMax; }
+        public string GetRSVPCount() { return GetRSVPCount(); }
 
     }
 

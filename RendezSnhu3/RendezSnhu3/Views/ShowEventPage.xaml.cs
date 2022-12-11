@@ -1,5 +1,6 @@
 ﻿using MvvmHelpers;
 using RendezSnhu3.Model;
+using RendezSnhu3.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,12 +26,27 @@ namespace RendezSnhu3.Views
         public string max;
         public int owner;
         public bool passed;
-
+        Database db = new Database();
         public ShowEventPage()
         {
 
             InitializeComponent();
-
+            EventTitle.Text = db.GeteventName();
+            EventImage.Source = db.GeteventImage();
+            EventDate.Text = db.GeteventDate();
+            EventTime.Text = db.GetFullTime();
+            EventDescription.Text = db.GeteventDescription();
+            bool RSVPText = db.GetIfRSVP().Result;
+            if (RSVPText)
+            {
+                RSVPbut.Text = "UnRSVP";
+            }
+            else
+            {
+                RSVPbut.Text = "RSVP";
+            }
+            NumRSVP.Text = db.GetRSVPCount();
+            MaxRSVP.Text = db.GetEventMax();
         }
         private async void RSVPButton(object sender, EventArgs e)
         {
