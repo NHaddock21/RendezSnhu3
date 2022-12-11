@@ -153,6 +153,14 @@ namespace RendezSnhu3.Services
             var events = await db.Table<Event>().Where(s => s.Name.ToLower().Contains(searchTxt) || s.Category.ToLower().Contains(searchTxt)).ToListAsync();
             return events;
         }
-        
+        public static async Task<Event> ViewEvent(int id)
+        {
+            await Init();
+
+
+            var events = await db.Table<Event>().FirstOrDefaultAsync(s => s.Id == id);
+            return events;
+        }
+
     }
 }

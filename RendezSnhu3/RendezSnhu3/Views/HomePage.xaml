@@ -15,6 +15,12 @@
     </ContentPage.BindingContext>
 
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
 
     <ListView
         BackgroundColor="Transparent"
@@ -26,9 +32,14 @@
         ItemsSource="{Binding Event}"
         RefreshCommand="{Binding RefreshCommand}"
         RefreshControlColor="#1a346f"
-        SelectionMode="None"
-        SeparatorVisibility="None"
-        ItemTapped="EventSelected"
+        SelectionMode="Single"
+        SeparatorVisibility="None">
+        <ListView.Behaviors>
+            <xct:EventToCommandBehavior
+                EventName="ItemSelected"
+                Command="{Binding SelectedCommand}"                
+                EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"/>
+        </ListView.Behaviors>
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="Model:Event">
                 <ViewCell>

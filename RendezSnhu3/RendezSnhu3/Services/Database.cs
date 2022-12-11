@@ -239,19 +239,19 @@ namespace RendezSnhu3.Services
         {
             ViewEvent viewEvent = new ViewEvent();
 
-            var query = data.Table<Event>().Where(s => s.Id.Equals(viewEventId));
-            var result = await query.ToListAsync();
-            viewEvent.Id = result[0].Id;
-            viewEvent.Name = result[0].Name;
-            viewEvent.Location= result[0].Location;
-            viewEvent.Image = result[0].Image;
-            viewEvent.Category = result[0].Category;
-            viewEvent.Date= result[0].Date;
-            viewEvent.StartTime= result[0].StartTime;
-            viewEvent.EndTime = result[0].EndTime;
-            viewEvent.Max = result[0].Max;
-            viewEvent.Owner= result[0].Owner;
-            viewEvent.Passed= result[0].Passed;
+            var query = await data.Table<Event>().Where(s => s.Id.Equals(8)).ToListAsync();
+            //var query = await query.ToListAsync();
+            viewEvent.Id = query[0].Id;
+            viewEvent.Name = query[0].Name;
+            viewEvent.Location= query[0].Location;
+            viewEvent.Image = query[0].Image;
+            viewEvent.Category = query[0].Category;
+            viewEvent.Date= query[0].Date;
+            viewEvent.StartTime= query[0].StartTime;
+            viewEvent.EndTime = query[0].EndTime;
+            viewEvent.Max = query[0].Max;
+            viewEvent.Owner= query[0].Owner;
+            viewEvent.Passed= query[0].Passed;
         }
 
     }

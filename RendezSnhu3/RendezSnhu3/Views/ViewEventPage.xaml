@@ -1,15 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:Model="clr-namespace:RendezSnhu3.Model"
-             x:Class="RendezSnhu3.Views.ShowEventPage" x:DataType="Model:Event">
-    
-    
-    
+             x:Class="RendezSnhu3.Views.ViewEventPage" x:DataType="Model:Event">
+
+
+
+    <ContentPage.Content>
         <Frame BackgroundColor="Gray" CornerRadius="0">
-            
+
 
             <StackLayout Spacing="-6">
-                
+
                 <Frame BackgroundColor="White" CornerRadius="5" Padding="10,5,10,25" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -22,18 +23,17 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="https://cdn-icons-png.flaticon.com/512/1561/1561127.png" HorizontalOptions="Start" WidthRequest="57" x:Name="EventImage"/>
+                        <Image Source="{Binding Image}" HorizontalOptions="Start" WidthRequest="57" x:Name="EventImage"/>
                         <Label Text="Category" Padding="0,75,0,0" TextColor="Black" FontAttributes="Bold" x:Name="CategoryName"/>
-                        <Label Grid.ColumnSpan="2"
-                 Text="{Binding Name}" VerticalOptions="Start" HorizontalOptions="Start" Padding="75,10,0,0" FontAttributes="Bold" TextColor="Black" FontSize="20" x:Name="EventTitle" />
+                        <Label Grid.ColumnSpan="2" Text="{Binding Name}" VerticalOptions="Start" HorizontalOptions="Start" Padding="75,10,0,0" FontAttributes="Bold" TextColor="Black" FontSize="20" x:Name="EventTitle" />
                         <Label Grid.ColumnSpan="2" Text="Date:" VerticalOptions="Start" HorizontalOptions="Start" Padding="75,45,0,0" FontAttributes="Bold" TextColor="Black" FontSize="15"/>
-                        <Label Grid.ColumnSpan="2" Text="{Binding Date, StringFormat='{}{0:ddd, MMM dd, yy}'}" VerticalOptions="Start" HorizontalOptions="Start" Padding="115,45,0,0" TextColor="Black" FontSize="15" x:Name="EventDate"/>
+                        <Label Grid.ColumnSpan="2" Text="{Binding Date, StringFormat='{}{0:ddd, MMM dd, yyyy}'}" VerticalOptions="Start" HorizontalOptions="Start" Padding="115,45,0,0" TextColor="Black" FontSize="15" x:Name="EventDate"/>
                         <Label Grid.ColumnSpan="2" Text="Time:" VerticalOptions="Start" HorizontalOptions="Start" Padding="75,75,0,0" FontAttributes="Bold" TextColor="Black" FontSize="15"/>
-                        <Label Grid.ColumnSpan="2" Text="" VerticalOptions="Start" HorizontalOptions="Start" Padding="115,75,0,0" TextColor="Black" FontSize="15" x:Name="EventTime"/>
+                        <Label Grid.ColumnSpan="2" Text="Justin plz do this"  VerticalOptions="Start" HorizontalOptions="Start" Padding="115,75,0,0" TextColor="Black" FontSize="15" x:Name="EventTime"/>
                         <Label Grid.Row="1" Grid.ColumnSpan="2" Text="Description:" TextColor="Black" FontSize="20" FontAttributes="Bold" Padding="0,0,0,0"/>
                         <Label Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="LightBlue" WidthRequest="50" HeightRequest="50" Padding="10,5,5,10" Text="{Binding Description}" TextColor="Black" FontSize="15" x:Name="EventDescription"/>
-                        <Button Grid.Row="3" Grid.ColumnSpan="2" BackgroundColor="Blue" HorizontalOptions="Start" Margin="150,50,0,0" Text="" TextColor="White" FontSize="18" FontAttributes="Bold" Clicked="RSVPButton"/>
-                        <Label Grid.Row="3" Grid.Column="1" Text="" Padding="70,75,0,0" TextColor="Black" FontSize="17" x:Name="NumRSVP"/>
+                        <Button Grid.Row="3" Grid.ColumnSpan="2" BackgroundColor="Blue" HorizontalOptions="Start" Margin="150,50,0,0" Text="RSVP" TextColor="White" FontSize="18" FontAttributes="Bold" Clicked="RSVPButton"/>
+                        <Label Grid.Row="3" Grid.Column="1" Text="5" Padding="70,75,0,0" TextColor="Black" FontSize="17" x:Name="NumRSVP"/>
                         <Label Grid.Row="3" Grid.Column="1" Text="/" Padding="90,75,0,0" TextColor="Black" FontSize="17"/>
                         <Label Grid.Row="3" Grid.Column="1" Text="{Binding Max}" Padding="100,75,0,0" TextColor="Black" FontSize="17" x:Name="MaxRSVP"/>
                         <Label Grid.Row="3" Grid.Column="1" Text="MAX." Padding="125,75,0,0" TextColor="Black" FontSize="17"/>
@@ -43,5 +43,8 @@
                 </Frame>
             </StackLayout>
         </Frame>
-    
+    </ContentPage.Content>
+
+
+
 </ContentPage>

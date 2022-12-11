@@ -2,6 +2,7 @@
 using MvvmHelpers.Commands;
 using RendezSnhu3.Model;
 using RendezSnhu3.Services;
+using RendezSnhu3.Views;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace RendezSnhu3.ViewModel
         public AsyncCommand RefreshCommand { get; }
         //public AsyncCommand AddCommand { get; }
         public AsyncCommand<Event> RemoveCommand { get; }
+        public AsyncCommand<Event> SelectedCommand { get; }
 
 
         public HomePageViewModel()
@@ -26,6 +28,10 @@ namespace RendezSnhu3.ViewModel
             RefreshCommand = new AsyncCommand(Refresh);
             //AddCommand = new AsyncCommand(Add);
             RemoveCommand = new AsyncCommand<Event>(Remove);
+            SelectedCommand = new AsyncCommand<Event>(Selected);
+
+
+            Task.Run(async () => await Refresh());
         }
 /*
         async Task Add()
@@ -57,7 +63,14 @@ namespace RendezSnhu3.ViewModel
 
             IsBusy = false;
         }
+        async Task Selected(Event events){
+            
+            
+            //$"{nameof(ViewEventPage)}?EventId={events.Id}";
+            
 
+            await Shell.Current.GoToAsync($"{nameof(ViewEventPage)}?EventId={events.Id}");
+        }
 
     }
 

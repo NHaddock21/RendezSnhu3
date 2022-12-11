@@ -24,12 +24,12 @@ namespace RendezSnhu3.Model
 
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public string FullTime;
+        public string FullTime { get; set; }
         public void SetFullTime(DateTime start, DateTime end)
         {
             FullTime = start.ToString() + " - " + end.ToString();
         }
-        public string RSVPButtonText;
+        public string RSVPButtonText { get; set; }
         Database db = new Database();
         public void SetRSVPText()
         {
@@ -48,7 +48,7 @@ namespace RendezSnhu3.Model
             get; set;
         }
 
-        public string RSVPCount;
+        public string RSVPCount { get; set; }
 
         public void CountRSVP()
         {

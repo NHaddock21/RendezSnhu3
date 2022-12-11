@@ -1,9 +1,11 @@
 using MvvmHelpers;
+using RendezSnhu3.Services;
 using SQLite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace RendezSnhu3.Model
 {
@@ -73,6 +75,8 @@ namespace RendezSnhu3.Model
             get { return passed; }
             set { passed = value; OnPropertyChanged(nameof(Passed)); }
         }
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 

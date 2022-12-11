@@ -19,14 +19,18 @@ namespace RendezSnhu3.Views
         {
             InitializeComponent();
         }
+
+        
+
         Database db = new Database();
         Event e = new Event();  
-        private async void EventSelected(object sender, EventArgs e)
+        private async void EventSelected(object sender, EventArgs f)
         {
             Button eventClicked = sender as Button;
-            db.SetEventID(sender.ToString()); ;
-            await db.SetEvent();
-            await Shell.Current.GoToAsync($"//HomePage/ShowEventPage");
+            //db.SetEventID(sender.ToString());
+            //await db.SetEvent();
+
+            await Shell.Current.GoToAsync($"//HomePage/ViewEventPage");
         }
 
     }
