@@ -21,6 +21,7 @@ namespace RendezSnhu3.Services
         static SQLiteAsyncConnection data;
         public static int userID;
         public static string viewEventId;
+        public ViewEvent viewEvent = new ViewEvent();
 
         public int getUserID()
         {
@@ -231,28 +232,50 @@ namespace RendezSnhu3.Services
         public async Task<int> RSVPCount()
         {
             await Init();
-            var events = await data.Table<UserToEvents>().Where(s => s.EventID.Equals(viewEventId)).ToListAsync();
+            var events = await data.Table<UserToEvents>().Where(s => s.EventID.Equals(int.Parse(viewEventId))).ToListAsync();
             return events.Count;
         }
 
-        public async Task SetEvent()
+        static int eventid;
+        static string eventName;
+        static string eventLocation;
+        static string eventImage;
+        static string eventDescription;
+        static string eventCategory;
+        static DateTime eventDate;
+        static DateTime eventStartTime;
+        static DateTime eventEndTime;
+        static string eventMax;
+        static int eventOwner;
+        static bool eventPassed;
+        
+        public void SetEvent(int id, string name, string location, string image, string description, string category, DateTime date, DateTime startTime, DateTime endTime, string max, int owner, bool passed )
         {
-            ViewEvent viewEvent = new ViewEvent();
 
-            var query = await data.Table<Event>().Where(s => s.Id.Equals(8)).ToListAsync();
-            //var query = await query.ToListAsync();
-            viewEvent.Id = query[0].Id;
-            viewEvent.Name = query[0].Name;
-            viewEvent.Location= query[0].Location;
-            viewEvent.Image = query[0].Image;
-            viewEvent.Category = query[0].Category;
-            viewEvent.Date= query[0].Date;
-            viewEvent.StartTime= query[0].StartTime;
-            viewEvent.EndTime = query[0].EndTime;
-            viewEvent.Max = query[0].Max;
-            viewEvent.Owner= query[0].Owner;
-            viewEvent.Passed= query[0].Passed;
+            eventid = id ;
+            eventName = name;
+            eventLocation = location;
+            eventImage = image;
+            eventDescription = description;
+            eventCategory = category;
+            eventDate = date;
+            eventStartTime= startTime;
+            eventEndTime = endTime;
+            eventMax = max;
+            eventOwner = owner;
+            eventPassed = passed;
         }
+
+        public string GeteventName(){return eventName;}
+
+        public string GeteventLocation() { return eventLocation; }
+        public string GeteventImage() { return eventImage; }
+        public string GeteventDescription() { return eventDescription; }
+        public string GeteventCategory() { return eventCategory; }
+        public string GeteventDate() { return eventDate.ToString(); }
+        public string GetFullTime() { return eventStartTime.ToString() + " - " + eventEndTime.ToString(); }
+        public string GetEventMax() { return eventMax; }
+        public string GetRSVPCount() { return GetRSVPCount(); }
 
     }
 

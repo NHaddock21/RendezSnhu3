@@ -6,9 +6,9 @@
             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
             x:Name="EventsPage"
             xmlns:ViewModel="clr-namespace:RendezSnhu3.ViewModel" 
-            xmlns:Model="clr-namespace:RendezSnhu3.Model"    
-            x:DataType="ViewModel:HomePageViewModel"
-            BackgroundColor="Gray" Shell.NavBarIsVisible="True" Title="Home" Shell.FlyoutBehavior="Flyout">
+            xmlns:Model="clr-namespace:RendezSnhu3.Model"
+             x:DataType="ViewModel:HomePageViewModel"
+             BackgroundColor="Gray" Shell.NavBarIsVisible="True" Title="Home" Shell.FlyoutBehavior="Flyout">
 
     <ContentPage.BindingContext>
         <ViewModel:HomePageViewModel />
@@ -23,10 +23,9 @@
     
 
     <ListView
-        BackgroundColor="Transparent"
+        BackgroundColor="Transparent" 
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
-         
         IsPullToRefreshEnabled="True"
         IsRefreshing="{Binding IsBusy, Mode=OneWay}"
         ItemsSource="{Binding Event}"
@@ -42,18 +41,19 @@
         </ListView.Behaviors>
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="Model:Event">
-                <ViewCell>
+                <ViewCell >
                     <ViewCell.ContextActions>
                         <!--for testing - delete from final-->
-                        <MenuItem
+                        <MenuItem 
+
                             Command="{Binding Source={x:Reference EventsPage}, Path=BindingContext.RemoveCommand}"
                             CommandParameter="{Binding .}"
                             IsDestructive="True"
                             Text="Delete" />
                     </ViewCell.ContextActions>
-                    <Grid Padding="5" ClassId="{Binding Id}">
+                    <Grid Padding="5">
                         <Frame CornerRadius="20" HasShadow="True" Padding="3" >
-                            <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" >
                                 <Image Source="{Binding Image}" WidthRequest="44" />
                                 <StackLayout VerticalOptions="Center">
                                     <Label
