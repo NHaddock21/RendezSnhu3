@@ -1,19 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Model="clr-namespace:RendezSnhu3.Model"
-             x:Class="RendezSnhu3.Views.SearchPage">
+             xmlns:Model="clr-namespace:RendezSnhu3.Model" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="RendezSnhu3.Views.SearchPage" Shell.NavBarIsVisible="True" Title="Search" BackgroundColor="#C3C6CA">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
 
     <StackLayout>
-        
-        <SearchBar TextChanged="SearchBar_TextChanged" />
 
-        <ListView ItemsSource="{Binding Events}">
+        <SearchBar TextChanged="SearchBar_TextChanged" Placeholder="Search"  xct:ShadowEffect.Color="Black" />
+
+        <ListView ItemsSource="{Binding Events}" SelectionMode="Single">
+            <ListView.Behaviors>
+                <xct:EventToCommandBehavior
+                EventName="ItemSelected"
+                Command="{Binding SelectedCommand}"                
+                EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"/>
+            </ListView.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="Model:Event">
                     <ViewCell>
                         <Grid Padding="5">
-                            <Frame CornerRadius="20" HasShadow="True" Padding="3">
+                            <Frame CornerRadius="20" HasShadow="True" Padding="3" BackgroundColor="#B7CACE">
                                 <StackLayout Orientation="Horizontal">
                                     <Image Source="{Binding Image}" WidthRequest="44" />
                                     <StackLayout VerticalOptions="Center">

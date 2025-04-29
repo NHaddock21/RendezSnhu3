@@ -6,13 +6,13 @@
 
 
     <ContentPage.Content>
-        <Frame BackgroundColor="#1a346f" HorizontalOptions="Start" CornerRadius="0" >
+        <Frame BackgroundColor="#00244E" HorizontalOptions="Start" CornerRadius="0" >
             <StackLayout BackgroundColor="Transparent">
                 <Image Source="signintitle.png" Scale=".5"/>
-                <Frame BackgroundColor="#898989" CornerRadius="5" Padding="4">
-                <StackLayout BackgroundColor="Transparent" Spacing="5" Padding="5">           
- 
-                    <Label Text="Email:" TextColor="#1a346f" FontSize="18"/>
+                <Frame BackgroundColor="#B7CACE" CornerRadius="5" Padding="4">
+                <StackLayout BackgroundColor="Transparent" Spacing="5" Padding="5">
+
+                        <Label Text="Email:" TextColor="#00244E" FontSize="18"/>
 
                         <Entry
                             x:Name= "usernametxt"
@@ -20,7 +20,7 @@
                         </Entry>
 
 
-                        <Label Text="Password:" TextColor="#1a346f" FontSize="18"/>
+                        <Label Text="Password:" TextColor="#00244E" FontSize="18"/>
 
                         <Entry 
                             x:Name = "passwordtxt"
@@ -30,14 +30,14 @@
  
                         <Button 
                     
-                            BackgroundColor="#1a346f" VerticalOptions="Center" 
+                            BackgroundColor="#00244E" VerticalOptions="Center" 
                             HorizontalOptions="Center" Padding="65,10,65,10" CornerRadius="5"                
                             Text="Sign In" TextColor="#ebb10e" FontSize="20"   
                             Clicked="SignInClicked">
                         </Button>
             </StackLayout>
                 </Frame>
-                <Button BackgroundColor="#00aa1c" Text="Create Account" FontAttributes="Bold" FontSize="20" CornerRadius="5" Clicked="CreateAccountClicked"/>
+                <Button BackgroundColor="#539BD4" Text="Create Account" FontAttributes="Bold" FontSize="20" CornerRadius="5" Clicked="CreateAccountClicked"/>
                 <Label Text="" TextColor="Green" FontSize="20" x:Name="Notificationtxt"/>
             </StackLayout>
         </Frame>

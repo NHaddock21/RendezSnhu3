@@ -8,7 +8,7 @@
             xmlns:ViewModel="clr-namespace:RendezSnhu3.ViewModel" 
             xmlns:Model="clr-namespace:RendezSnhu3.Model"
              x:DataType="ViewModel:HomePageViewModel"
-             BackgroundColor="Gray" Shell.NavBarIsVisible="True" Title="Home" Shell.FlyoutBehavior="Flyout">
+             BackgroundColor="#C3C6CA" Shell.NavBarIsVisible="True" Title="Home" >
 
     <ContentPage.BindingContext>
         <ViewModel:HomePageViewModel />
@@ -30,7 +30,7 @@
         IsRefreshing="{Binding IsBusy, Mode=OneWay}"
         ItemsSource="{Binding Event}"
         RefreshCommand="{Binding RefreshCommand}"
-        RefreshControlColor="#1a346f"
+        RefreshControlColor="#00244E"
         SelectionMode="Single"
         SeparatorVisibility="None">
         <ListView.Behaviors>
@@ -52,16 +52,18 @@
                             Text="Delete" />
                     </ViewCell.ContextActions>
                     <Grid Padding="5">
-                        <Frame CornerRadius="20" HasShadow="True" Padding="3" >
+                        <Frame CornerRadius="20" HasShadow="True" Padding="3" BackgroundColor="#B7CACE">
                             <StackLayout Orientation="Horizontal" >
                                 <Image Source="{Binding Image}" WidthRequest="44" />
                                 <StackLayout VerticalOptions="Center">
                                     <Label
                                         FontSize="Large"
+                                        TextColor="Black"
                                         Text="{Binding Name}"
                                         VerticalOptions="Center" />
                                     <Label
                                         FontSize="Medium"
+                                        TextColor="Black"
                                         Text="{Binding Location}"
                                         VerticalOptions="Center" />
                                     <Label

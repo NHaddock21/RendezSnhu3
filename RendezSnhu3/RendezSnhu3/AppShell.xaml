@@ -8,15 +8,15 @@
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="#1a346f" />
-                <Setter Property="Shell.ForegroundColor" Value="#ebb10e" />
-                <Setter Property="Shell.TitleColor" Value="#ebb10e" />
+                <Setter Property="Shell.BackgroundColor" Value="#00244E" />
+                <Setter Property="Shell.ForegroundColor" Value="#FDB913" />
+                <Setter Property="Shell.TitleColor" Value="#FDB913" />
                 <Setter Property="Shell.DisabledColor" Value="#898989" />
                 <Setter Property="Shell.UnselectedColor" Value="#898989" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="#1a346f" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="#00244E" />
                 <Setter Property="Shell.TabBarForegroundColor" Value="#898989"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#898989"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="#ebb10e"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#B7CACE"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="#FDB913"/>
 
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />

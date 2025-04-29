@@ -11,9 +11,9 @@
 
 
 
-            <StackLayout Padding="50,70,50,0" BackgroundColor="#1a346f" Spacing="-6">
+            <StackLayout Padding="50,70,50,0" BackgroundColor="#00244E" Spacing="-6">
 
-            <Frame BackgroundColor="Transparent" HorizontalOptions="Start" Padding="0,0,100,10">
+            <Frame BackgroundColor="Transparent" HorizontalOptions="Start" Padding="25,0,25,25" >
 
                 <Image Source="create_account_title.png"/>
 
@@ -21,13 +21,13 @@
 
 
 
-            <Frame BackgroundColor="#898989" Padding="25,25,25,10">
+                <Frame BackgroundColor="#B7CACE" Padding="25,25,25,10" CornerRadius="5">
 
-                <Label Text="First Name:" TextColor="#1a346f" FontSize="18"/>
+                    <Label Text="First Name:" TextColor="#00244E" FontSize="18"/>
 
             </Frame>
 
-            <Frame BackgroundColor="#898989" Padding="25,0,25,0">
+                <Frame BackgroundColor="#B7CACE" Padding="25,0,25,0">
 
                 <Entry
                             x:Name= "FirstNametxt"
@@ -36,17 +36,17 @@
 
             </Frame>
 
-                <Frame BackgroundColor="#898989" Padding="25,0,25,20">
+                <Frame BackgroundColor="#B7CACE" Padding="25,0,25,20">
                 <Label Text="" TextColor="Red" FontSize="18" x:Name="FirstNameError"/>
             </Frame>
 
-            <Frame BackgroundColor="#898989" Padding="25,25,25,10">
+                <Frame BackgroundColor="#B7CACE" Padding="25,25,25,10">
 
-                <Label Text="Last Name:" TextColor="#1a346f" FontSize="18"/>
+                    <Label Text="Last Name:" TextColor="#00244E" FontSize="18"/>
 
             </Frame>
 
-            <Frame BackgroundColor="#898989" Padding="25,0,25,0">
+                <Frame BackgroundColor="#B7CACE" Padding="25,0,25,0">
 
                 <Entry
                             x:Name= "LastNametxt"
@@ -54,19 +54,19 @@
                 </Entry>
 
             </Frame>
-            
-            <Frame BackgroundColor="#898989" Padding="25,0,25,20">
+
+                <Frame BackgroundColor="#B7CACE" Padding="25,0,25,20">
                 <Label Text="" TextColor="Red" FontSize="18" x:Name="LastNameError"/>
             </Frame>
-                
 
-            <Frame BackgroundColor="#898989" Padding="25,25,25,10">
 
-                <Label Text="Email:" TextColor="#1a346f" FontSize="18"/>
+                <Frame BackgroundColor="#B7CACE" Padding="25,25,25,10">
+
+                    <Label Text="Email:" TextColor="#00244E" FontSize="18"/>
 
             </Frame>
 
-            <Frame BackgroundColor="#898989" Padding="25,0,25,0">
+                <Frame BackgroundColor="#B7CACE" Padding="25,0,25,0">
 
                 <Entry
                             x:Name= "Emailtxt"
@@ -75,17 +75,17 @@
 
             </Frame>
 
-                <Frame BackgroundColor="#898989" Padding="25,0,25,20">
+                <Frame BackgroundColor="#B7CACE" Padding="25,0,25,20">
                     <Label Text="" TextColor="Red" FontSize="18" x:Name="EmailError"/>
                 </Frame>
 
-                <Frame BackgroundColor="#898989" Padding="25,25,25,10">
+                <Frame BackgroundColor="#B7CACE" Padding="25,25,25,10">
 
-                <Label Text="Password:" TextColor="#1a346f" FontSize="18"/>
+                    <Label Text="Password:" TextColor="#00244E" FontSize="18"/>
 
             </Frame>
 
-            <Frame BackgroundColor="#898989" Padding="25,0,25,0">
+                <Frame BackgroundColor="#B7CACE" Padding="25,0,25,0">
 
                 <Entry
                             x:Name= "Passwordtxt"
@@ -94,17 +94,17 @@
 
             </Frame>
 
-                <Frame BackgroundColor="#898989" Padding="25,0,25,10">
-                    <Label Text="(Must contain at least: 1 lower case letter, 1 upper case letter, 1 special character, 1 number and 8 characters in length)" TextColor="#1a346f" FontSize="18" x:Name="PasswordError"/>
+                <Frame BackgroundColor="#B7CACE" Padding="25,0,25,10">
+                    <Label Text="(Must contain at least: 1 lower case letter, 1 upper case letter, 1 special character, 1 number and 8 characters in length)" TextColor="#00244E" FontSize="18" x:Name="PasswordError"/>
                 </Frame>
 
-                <Frame BackgroundColor="#898989" Padding="25,25,25,10">
+                <Frame BackgroundColor="#B7CACE" Padding="25,25,25,10">
 
-                <Label Text="Confirm Password:" TextColor="#1a346f" FontSize="18"/>
+                    <Label Text="Confirm Password:" TextColor="#00244E" FontSize="18"/>
 
             </Frame>
 
-            <Frame BackgroundColor="#898989" Padding="25,0,25,0">
+                <Frame BackgroundColor="#B7CACE" Padding="25,0,25,0">
 
                     <Entry
                             x:Name= "PasswordMatchtxt"
@@ -113,7 +113,7 @@
 
             </Frame>
 
-                <Frame BackgroundColor="#898989" Padding="25,0,25,10">
+                <Frame BackgroundColor="#B7CACE" Padding="25,0,25,10" CornerRadius="5">
                     <Label Text="" TextColor="Red" FontSize="18" x:Name="PasswordMatchError"/>
                 </Frame>
 
@@ -122,7 +122,7 @@
 
                 <Frame BackgroundColor="Transparent">
 
-                <Button BackgroundColor="#00aa1c" Text="Submit" FontAttributes="Bold" FontSize="20" CornerRadius="5" 
+                    <Button BackgroundColor="#539BD4" Text="Submit" FontAttributes="Bold" FontSize="20" CornerRadius="5" 
                         Clicked="SubmitClicked"/>
 
             </Frame>

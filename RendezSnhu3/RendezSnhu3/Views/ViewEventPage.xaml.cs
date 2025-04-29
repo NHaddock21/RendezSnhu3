@@ -16,6 +16,7 @@ namespace RendezSnhu3.Views
     [QueryProperty(nameof(EventId), nameof(EventId))]
     public partial class ViewEventPage : ContentPage
     {
+        bool RSVPbutton;
         public string EventId { get; set; }
         public ObservableRangeCollection<Event> Events { get; set; }
 
@@ -26,6 +27,16 @@ namespace RendezSnhu3.Views
             Events = new ObservableRangeCollection<Event>();
 
             BindingContext = this;
+            RSVPbutton = db.GetIfRSVPAsync(EventId).Result;
+            if (RSVPbutton)
+            {
+                RSVPbut.Text = "UnRSVP";
+            }
+            else
+            {
+                RSVPbut.Text = "RSVP";
+            }
+            
 
 
         }
@@ -40,10 +51,23 @@ namespace RendezSnhu3.Views
 
 
         }
-
-        private void RSVPButton(object sender, EventArgs e)
+        Database db = new Database();
+        private async void RSVPButton(object sender, EventArgs e)
         {
 
+            if (RSVPbut.Text == "RSVP")
+            {
+                NumRSVP.Text = (Int32.Parse(NumRSVP.Text) + 1).ToString();
+                await db.SetRSVP(EventId);
+                RSVPbut.Text = "UnRSVP";
+            }
+            else
+            {
+                NumRSVP.Text = (Int32.Parse(NumRSVP.Text) - 1).ToString();
+                await db.UnRSVP(EventId);
+                RSVPbut.Text = "RSVP";
+            }
         }
+
     }
 }

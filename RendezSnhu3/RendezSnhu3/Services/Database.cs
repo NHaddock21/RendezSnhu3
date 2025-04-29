@@ -20,16 +20,11 @@ namespace RendezSnhu3.Services
     {
         static SQLiteAsyncConnection data;
         public static int userID;
-        public static string viewEventId;
-        public ViewEvent viewEvent = new ViewEvent();
+        
 
         public int getUserID()
         {
             return userID;
-        }
-        public void SetEventID(string ID)
-        {
-            viewEventId = ID;
         }
         static async Task Init()
         {
@@ -117,35 +112,35 @@ namespace RendezSnhu3.Services
         }
 
 
-        public async Task<bool> GetIfRSVP()
+        public async Task<bool> GetIfRSVPAsync(string eventID)
         {
-            var query = data.Table<UserToEvents>().Where(s => s.EventID.Equals(int.Parse(viewEventId))).Where(m => m.UserID.Equals(userID));
-            var result = query.ToListAsync();
-            if (result == null)
+            var plub = data.Table<UserToEvents>().Where(s => s.EventID.Equals(int.Parse(eventID))).Where(s => s.UserID.Equals(userID)).ToListAsync();
+
+            if (plub.Equals(0))
             {
-                return await Task.FromResult(false);
+                return true;
             }
-            return await Task.FromResult(true);
+            return false;
         }
 
-        public async Task SetRSVP()
+        public async Task SetRSVP(string eventID)
         {
             await Init();
             var RSVP = new UserToEvents
             {
                 UserID = userID,
-                EventID = int.Parse(viewEventId),
+                EventID = int.Parse(eventID),
             };
             await data.InsertAsync(RSVP);
         }
 
-        public async Task UnRSVP()
+        public async Task UnRSVP(string eventID)
         {
             await Init();
             var RSVP = new UserToEvents
             {
                 UserID = userID,
-                EventID = int.Parse(viewEventId),
+                EventID = int.Parse(eventID),
             };
             await data.DeleteAsync(RSVP);
         }
@@ -229,10 +224,10 @@ namespace RendezSnhu3.Services
 
             return results;
         }
-        public async Task<int> RSVPCount()
+        public async Task<int> RSVPCount(string eventID)
         {
             await Init();
-            var events = await data.Table<UserToEvents>().Where(s => s.EventID.Equals(int.Parse(viewEventId))).ToListAsync();
+            var events = await data.Table<UserToEvents>().Where(s => s.EventID.Equals(int.Parse(eventID))).ToListAsync();
             return events.Count;
         }
 

@@ -34,6 +34,7 @@ namespace RendezSnhu3.ViewModel
             get { return etime; }
             set { etime = value; OnPropertyChanged(nameof(EndTime)); }
         }
+        public DateTime TodaysDate { get { return DateTime.Now; } }
 
         
 
