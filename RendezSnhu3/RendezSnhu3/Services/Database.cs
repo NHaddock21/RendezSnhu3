@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
@@ -18,7 +19,13 @@ namespace RendezSnhu3.Services
     internal class Database
     {
         static SQLiteAsyncConnection data;
-        int userID;
+        public static int userID;
+        
+
+        public int getUserID()
+        {
+            return userID;
+        }
         static async Task Init()
         {
 
@@ -67,16 +74,17 @@ namespace RendezSnhu3.Services
             {
                 if (userPass == pass)
                 {
+                    userID = result[0].UserID;
                     List<string> emailList = new List<string>();
                     emailList.Add(userEmail);
                     SendEmail se = new SendEmail();
-                    //se.Email(email);
+                    // se.Email(emailList);
                     await Shell.Current.GoToAsync($"//HomePage");
                 }
                 else
                 {
                     MessagingCenter.Send<Database>(this, "Error");
-                    
+
                 }
             }
         }
@@ -91,8 +99,10 @@ namespace RendezSnhu3.Services
                 Email = email,
                 Password = password
             };
-            SendEmail se = new SendEmail();
-            se.Email(email); 
+            List<string> emailList = new List<string>();
+            emailList.Add(email);
+            //SendEmail se = new SendEmail();
+            //se.Email(emailList); 
             await data.InsertAsync(user);
         }
 
@@ -100,40 +110,173 @@ namespace RendezSnhu3.Services
         {
             await Init();
         }
-        
 
-        public async Task<List<UserToEvents>> GetIfRSVP (int eventID)
+
+        public async Task<bool> GetIfRSVPAsync(string eventID)
         {
-            await Init(); 
-            var query = data.Table<UserToEvents>().Where(s => s.EventID.Equals(eventID)).Where( m => m.UserID.Equals(userID));
-            var result = await query.ToListAsync();
-            return result;
+            var plub = data.Table<UserToEvents>().Where(s => s.EventID.Equals(int.Parse(eventID))).Where(s => s.UserID.Equals(userID)).ToListAsync();
+
+            if (plub.Equals(0))
+            {
+                return true;
+            }
+            return false;
         }
 
-        public async Task SetRSVP(int eventID)
+        public async Task SetRSVP(string eventID)
         {
             await Init();
             var RSVP = new UserToEvents
             {
                 UserID = userID,
-                EventID = eventID,
+                EventID = int.Parse(eventID),
             };
             await data.InsertAsync(RSVP);
         }
 
-        public async Task UnRSVP(int eventID)
+        public async Task UnRSVP(string eventID)
         {
             await Init();
             var RSVP = new UserToEvents
             {
                 UserID = userID,
-                EventID = eventID,
+                EventID = int.Parse(eventID),
             };
             await data.DeleteAsync(RSVP);
         }
+        public static async Task<IEnumerable<Event>> HostedEvents()
+        {
+            await Init();
 
+            var events = await data.Table<Event>().Where(s => s.Owner.Equals(userID)).ToListAsync();
+            return events;
+        }
+        public async Task<List<UserToEvents>> RSVPedEvents(int eventID)
+        {
+            await Init();
+
+            var events = await data.Table<UserToEvents>().Where(m => m.UserID.Equals(userID)).ToListAsync();
+
+            return events;
+        }
+
+        public static async Task<IEnumerable<Event>> CategoryList(List<string> categories)
+        {
+            await Init();
+            List<Event> results = null;
+            if (categories != null)
+            {
+                for (int i = 0; i < categories.Count; i++)
+                {
+                    var events = await data.Table<Event>().Where(s => s.Category.Equals(categories[i])).Where(s => s.Passed == false).ToListAsync();
+                    results.AddRange(events);
+                }
+                if (results.Count > 1)
+                {
+                    for (int i = 0; i < results.Count; i++)
+                    {
+                        for (int j = 0; j < results.Count - 1; j++)
+                        {
+                            if (results[j].Date < DateTime.Now)
+                            {
+                                results[j].Passed = true;
+                                await data.InsertOrReplaceAsync(results[j]);
+                                results.RemoveAt(j);
+                            }
+                            else if (results[j].Date == DateTime.Now)
+                            {
+                                if (results[j].StartTime < DateTime.Now)
+                                {
+                                    results[j].Passed = true;
+                                    await data.InsertOrReplaceAsync(results[j]);
+                                    results.RemoveAt(j);
+                                }
+                                else
+                                {
+                                    if (results[j].StartTime > results[j + 1].StartTime)
+                                    {
+                                        (results[j], results[j + 1]) = (results[j + 1], results[j]);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (results[j].Date > results[j + 1].Date)
+                                {
+                                    (results[j], results[j + 1]) = (results[j + 1], results[j]);
+                                }
+                                else if (results[j].Date == results[j + 1].Date)
+                                {
+                                    if (results[j].StartTime > results[j + 1].StartTime)
+                                    {
+                                        (results[j], results[j + 1]) = (results[j + 1], results[j]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                results = await data.Table<Event>().Where(s => s.Passed == false).ToListAsync();
+            }
+
+            return results;
+        }
+        public async Task<int> RSVPCount(string eventID)
+        {
+            await Init();
+            var events = await data.Table<UserToEvents>().Where(s => s.EventID.Equals(int.Parse(eventID))).ToListAsync();
+            return events.Count;
+        }
+
+        static int eventid;
+        static string eventName;
+        static string eventLocation;
+        static string eventImage;
+        static string eventDescription;
+        static string eventCategory;
+        static DateTime eventDate;
+        static DateTime eventStartTime;
+        static DateTime eventEndTime;
+        static string eventMax;
+        static int eventOwner;
+        static bool eventPassed;
+        
+        public void SetEvent(int id, string name, string location, string image, string description, string category, DateTime date, DateTime startTime, DateTime endTime, string max, int owner, bool passed )
+        {
+
+            eventid = id ;
+            eventName = name;
+            eventLocation = location;
+            eventImage = image;
+            eventDescription = description;
+            eventCategory = category;
+            eventDate = date;
+            eventStartTime= startTime;
+            eventEndTime = endTime;
+            eventMax = max;
+            eventOwner = owner;
+            eventPassed = passed;
+        }
+
+        public string GeteventName(){return eventName;}
+
+        public string GeteventLocation() { return eventLocation; }
+        public string GeteventImage() { return eventImage; }
+        public string GeteventDescription() { return eventDescription; }
+        public string GeteventCategory() { return eventCategory; }
+        public string GeteventDate() { return eventDate.ToString(); }
+        public string GetFullTime() { return eventStartTime.ToString() + " - " + eventEndTime.ToString(); }
+        public string GetEventMax() { return eventMax; }
+        public string GetRSVPCount() { return GetRSVPCount(); }
 
     }
+
+
+
+
 }
 
 //Get Each part of an event

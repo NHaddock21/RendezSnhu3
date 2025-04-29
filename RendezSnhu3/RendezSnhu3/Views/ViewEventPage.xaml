@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:Model="clr-namespace:RendezSnhu3.Model"
+             x:Class="RendezSnhu3.Views.ViewEventPage" x:DataType="Model:Event" Shell.NavBarIsVisible="True" Title="Details" Shell.NavBarHasShadow="False">
+
+
+
+    <ContentPage.Content>
+        <Frame BackgroundColor="#00244E" CornerRadius="0">
+
+
+            <StackLayout Spacing="-6">
+
+                <Frame BackgroundColor="#B7CACE" CornerRadius="5" Padding="10,5,10,25" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HasShadow="True">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="200"/>
+                            <RowDefinition Height="100"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding Image}" HorizontalOptions="Start" VerticalOptions="Start" WidthRequest="57" x:Name="EventImage"/>
+                        <Label Text="{Binding Category}" Padding="0,75,0,0" TextColor="Black" FontAttributes="Bold" x:Name="CategoryName"/>
+                        <Label Grid.ColumnSpan="2" Text="{Binding Name}" VerticalOptions="Start" HorizontalOptions="Start" Padding="75,10,0,0" FontAttributes="Bold" TextColor="Black" FontSize="20" x:Name="EventTitle" />
+                        <Label Grid.ColumnSpan="2" Text="Date:" VerticalOptions="Start" HorizontalOptions="Start" Padding="75,45,0,0" FontAttributes="Bold" TextColor="Black" FontSize="15"/>
+                        <Label Grid.ColumnSpan="2" Text="{Binding Date, StringFormat='{}{0:ddd, MMM dd, yyyy}'}" VerticalOptions="Start" HorizontalOptions="Start" Padding="115,45,0,0" TextColor="Black" FontSize="15" x:Name="EventDate"/>
+                        <Label Grid.ColumnSpan="2" Text="Time:" VerticalOptions="Start" HorizontalOptions="Start" Padding="75,75,0,0" FontAttributes="Bold" TextColor="Black" FontSize="15"/>
+                        <Label Grid.ColumnSpan="2" Text="{Binding StartTime, StringFormat='{}{0:h:mm tt} -'}"  VerticalOptions="Start" HorizontalOptions="Start" Padding="115,75,0,0" TextColor="Black" FontSize="15" x:Name="EventTime"/>
+                        <Label Grid.ColumnSpan="2" Text="{Binding EndTime, StringFormat='{}{0:h:mm tt}'}"  VerticalOptions="Start" HorizontalOptions="Start" Padding="190,75,0,0" TextColor="Black" FontSize="15" x:Name="EventTime2"/>
+                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="Description:" TextColor="Black" FontSize="20" FontAttributes="Bold" Padding="0,0,0,0"/>
+                        <Label Grid.Row="2" Grid.ColumnSpan="2" WidthRequest="50" HeightRequest="50" Padding="10,5,5,10" Text="{Binding Description}" TextColor="Black" FontSize="17" x:Name="EventDescription"/>
+                        <Button Grid.Row="3" Grid.ColumnSpan="2" BackgroundColor="#539BD4" HorizontalOptions="Start" Margin="125,50,0,0" Text="RSVP" TextColor="White" FontSize="18" FontAttributes="Bold" Clicked="RSVPButton" x:Name="RSVPbut"/>
+                        <Label Grid.Row="3" Grid.Column="1" Text="5" Padding="50,75,0,0" TextColor="Black" FontSize="17" x:Name="NumRSVP"/>
+                        <Label Grid.Row="3" Grid.Column="1" Text="/" Padding="70,75,0,0" TextColor="Black" FontSize="17"/>
+                        <Label Grid.Row="3" Grid.Column="1" Text="{Binding Max}" Padding="100,75,0,0" TextColor="Black" FontSize="17" x:Name="MaxRSVP"/>
+                        <Label Grid.Row="3" Grid.Column="1" Text=" max." Padding="130,75,0,0" TextColor="Black" FontSize="17"/>
+
+                    </Grid>
+
+                </Frame>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+
+
+
+</ContentPage>

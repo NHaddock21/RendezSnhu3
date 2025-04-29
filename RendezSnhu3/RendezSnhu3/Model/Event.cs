@@ -1,10 +1,11 @@
-
 using MvvmHelpers;
+using RendezSnhu3.Services;
 using SQLite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace RendezSnhu3.Model
 {
@@ -12,7 +13,6 @@ namespace RendezSnhu3.Model
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-
         string name;
         public string Name
         {
@@ -31,6 +31,13 @@ namespace RendezSnhu3.Model
             get { return image; }
             set { image = value; OnPropertyChanged(nameof(Image)); }
         }
+        string description;
+        public string Description
+        {
+            get { return description; }
+            set { description= value; OnPropertyChanged(nameof(Description));}
+        }
+
         string category;
         public string Category
         {
@@ -47,7 +54,7 @@ namespace RendezSnhu3.Model
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
-   
+
         string max;
         public string Max
         {
@@ -55,12 +62,16 @@ namespace RendezSnhu3.Model
             set { max = value; OnPropertyChanged(nameof(Max)); }
         }
 
-        //IBlob picture;
-        /*public IBlob Picture
+        int owner;
+        public int Owner
         {
-            get { return picture; }
-            set { picture = value; OnPropertyChanged(nameof(Picture));  }
-        }*/
+            get { return owner; }
+            set { owner= value; OnPropertyChanged(nameof(Owner));}
+        }
+        bool passed;
+        public bool Passed { get; set; }
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -73,6 +84,7 @@ namespace RendezSnhu3.Model
 
             Name = string.Empty;
             Location = string.Empty;
+            Description = string.Empty;
             Image = string.Empty;
             Category = string.Empty;
             Max = string.Empty;

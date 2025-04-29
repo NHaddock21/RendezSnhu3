@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:local="clr-namespace:RendezSnhu3.ViewModel"
              x:Class="RendezSnhu3.Views.CreateEventPage" Title="Create Event"
-             Shell.NavBarIsVisible="True" 
+             Shell.NavBarIsVisible="True" Shell.NavBarHasShadow="False"
              x:DataType="local:CreateEventPageViewModel"
              xmlns:ViewModel="clr-namespace:RendezSnhu3.ViewModel"
              xmlns:Model="clr-namespace:RendezSnhu3.Model">
@@ -15,9 +15,9 @@
 
 
     <ContentPage.Content>
-        <Frame BackgroundColor="Gray" CornerRadius="0">
+        <Frame BackgroundColor="#00244E" CornerRadius="0">
             <StackLayout Spacing="-6">
-                <Frame BackgroundColor="White" CornerRadius="5" Padding="25,25,0,0">
+                <Frame BackgroundColor="#B7CACE" CornerRadius="5" Padding="25,25,0,0">
                     <Grid>
 
                         <Grid.RowDefinitions>
@@ -36,7 +36,7 @@
                         
                     </Grid>
                 </Frame>
-                <Frame CornerRadius="0" Padding="0,0,0,0">
+                <Frame CornerRadius="0" Padding="0,0,0,0" BackgroundColor="#B7CACE">
                     <Grid>
                         
                         <Grid.RowDefinitions>
@@ -49,11 +49,11 @@
                         </Grid.ColumnDefinitions>
                         
                         <Label Grid.Row="0" Grid.Column="1" Text="Has location been scheduled with appropriate people?" FontSize="10" VerticalOptions="Center"/>
-                        <CheckBox Grid.Row="0" Grid.Column="2" Color="#1a346f"/>
+                        <CheckBox Grid.Row="0" Grid.Column="2" Color="#539BD4"/>
                         
                     </Grid>
                 </Frame>
-                <Frame CornerRadius="0" Padding="25,10,0,0">
+                <Frame CornerRadius="0" Padding="25,10,0,0" BackgroundColor="#B7CACE">
                     <Grid>
                         
                         <Grid.RowDefinitions>
@@ -65,11 +65,11 @@
                         </Grid.ColumnDefinitions>
                         
                         <Label Grid.Row="0" Grid.Column="0" Text="Description: " VerticalOptions="Start" Padding="0,9,0,0" TextColor="Black"/>
-                        <Editor Grid.Row="0" Grid.Column="1" Placeholder="/begin typing/" FontSize="13" PlaceholderColor="Gray" />
+                        <Editor Grid.Row="0" Grid.Column="1" Placeholder="/begin typing/" FontSize="13" Text="{Binding Event.Description}" PlaceholderColor="Gray" />
                         
                     </Grid>
                 </Frame>
-                <Frame>
+                <Frame BackgroundColor="#B7CACE">
                     <Grid>
                         
                         <Grid.RowDefinitions>
@@ -86,7 +86,7 @@
                         </Grid.ColumnDefinitions>
                         
                         <Label Grid.Row="0" Grid.Column="0" Text="Date: " VerticalOptions="Center" HorizontalOptions="End" TextColor="Black"/>
-                        <DatePicker Date="{Binding Event.Date}" MinimumDate="11/01/2022" Grid.Row="0" Grid.Column="1" FontSize="13" HorizontalOptions="Start"/>
+                        <DatePicker Date="{Binding Event.Date}" MinimumDate="{Binding TodaysDate}"  Grid.Row="0" Grid.Column="1" FontSize="13" HorizontalOptions="Start"/>
                         <Label Grid.Row="0" Grid.Column="2" Text="Time: " VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black"/>
                         <TimePicker  Time="{Binding StartTime}" Grid.Row="0" Grid.Column="3" FontSize="13" />
                         <Label Grid.Column="4" Grid.Row="0"  Text="-" VerticalTextAlignment="Center" FontSize="Large"/>
@@ -111,7 +111,7 @@
 
                     </Grid>
                 </Frame>
-                <Frame CornerRadius="5">
+                <Frame CornerRadius="5" BackgroundColor="#B7CACE">
                     <Button
                             BackgroundColor="#1a346f" VerticalOptions="Center" 
                             HorizontalOptions="Center" Padding="65,10,65,10" CornerRadius="5"                

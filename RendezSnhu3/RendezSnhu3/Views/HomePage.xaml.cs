@@ -1,4 +1,5 @@
 ﻿using RendezSnhu3.Model;
+using RendezSnhu3.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,23 @@ namespace RendezSnhu3.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
+        static string ID;
         public HomePage()
         {
             InitializeComponent();
         }
 
-        private async void EventSelected(object sender, EventArgs e)
+        
+
+        Database db = new Database();
+        Event e = new Event();  
+        private async void EventSelected(object sender, EventArgs f)
         {
-            await Shell.Current.GoToAsync($"//HomePage/ShowEventPage");
+            Button eventClicked = sender as Button;
+            //db.SetEventID(sender.ToString());
+            //await db.SetEvent();
+
+            await Shell.Current.GoToAsync($"//HomePage/ViewEventPage");
         }
 
     }

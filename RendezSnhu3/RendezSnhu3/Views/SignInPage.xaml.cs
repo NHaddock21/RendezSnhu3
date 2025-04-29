@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using RendezSnhu3;
+using RendezSnhu3.Model;
 using RendezSnhu3.Services;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,6 +19,8 @@ namespace RendezSnhu3.Views
     
     public partial class SignInPage : ContentPage
     {
+        int signedIn = 1;
+
         Database data = new Database();
         public SignInPage()
         {
@@ -30,6 +33,8 @@ namespace RendezSnhu3.Views
                 Notificationtxt.TextColor = Color.Red;
                 Notificationtxt.Text = "Incorrect Email or Password";
             });
+
+           
         }
         private async void CreateAccountClicked(object sender, EventArgs e)
         {
@@ -37,6 +42,7 @@ namespace RendezSnhu3.Views
             await Shell.Current.GoToAsync($"//SignInPage/CreateAccountPage");
         }
 
+      
         private async void SignInClicked(object sender, EventArgs e)
         {
             if (usernametxt.Text != null & passwordtxt.Text != null)

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
+
 namespace RendezSnhu3.Services
 {
     public static class EventService
@@ -26,9 +27,10 @@ namespace RendezSnhu3.Services
             await db.CreateTableAsync<Event>();
         }
 
-        public static async Task AddEvent(string name, string location, string category, DateTime date, DateTime sTime, DateTime eTime, string max)
+        public static async Task AddEvent(string name, string location, string description, string category, DateTime date, DateTime sTime, DateTime eTime, string max)
         {
             await Init();
+            Database database= new Database();
             var image = "";
 
             if (category == "Gaming")
@@ -66,13 +68,14 @@ namespace RendezSnhu3.Services
                 Name = name,
                 Location = location,
                 Image = image,
+                Description = description,
                 Date = date,
                 StartTime = sTime,
                 EndTime = eTime,
                 Category = category,
-                Max = max
-
-
+                Max = max,
+                Owner = database.getUserID(),
+                Passed = false
             };
 
             var id = await db.InsertAsync(events);
@@ -90,7 +93,52 @@ namespace RendezSnhu3.Services
         {
             await Init();
 
-            var events = await db.Table<Event>().ToListAsync();
+            var events = await db.Table<Event>().Where(s => s.Passed == false).ToListAsync();
+            
+            if (events.Count > 1) {
+                for (int i = 0; i < events.Count; i++)
+                {
+                    for (int j = 0; j < events.Count - 1; j++)
+                    {
+                        if (events[j].Date < DateTime.Now)
+                        {
+                            events[j].Passed = true;
+                            await db.InsertOrReplaceAsync(events[j]);
+                            events.RemoveAt(j);
+                        }
+                        else if (events[j].Date == DateTime.Now)
+                        {
+                            if (events[j].StartTime < DateTime.Now)
+                            {
+                                events[j].Passed = true;
+                                await db.InsertOrReplaceAsync(events[j]);
+                                events.RemoveAt(j);
+                            }
+                            else
+                            {
+                                if (events[j].StartTime > events[j + 1].StartTime)
+                                {
+                                    (events[j], events[j + 1]) = (events[j + 1], events[j]);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (events[j].Date > events[j + 1].Date)
+                            {
+                                (events[j], events[j + 1]) = (events[j + 1], events[j]);
+                            }
+                            else if (events[j].Date == events[j+1].Date) 
+                            {
+                                if (events[j].StartTime > events[j + 1].StartTime)
+                                {
+                                    (events[j], events[j + 1]) = (events[j + 1], events[j]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             return events;
         }
 
@@ -103,8 +151,19 @@ namespace RendezSnhu3.Services
             
 
             var events = await db.Table<Event>().Where(s => s.Name.ToLower().Contains(searchTxt) || s.Category.ToLower().Contains(searchTxt)).ToListAsync();
+
             return events;
         }
-        
+        public static async Task<Event> ViewEvent(int id)
+        {
+            await Init();
+
+            
+            var events = await db.Table<Event>().FirstOrDefaultAsync(s => s.Id == id);
+
+            return events;
+                    
+        }
+
     }
 }

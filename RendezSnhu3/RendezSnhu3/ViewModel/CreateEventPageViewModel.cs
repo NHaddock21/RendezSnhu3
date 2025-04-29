@@ -34,6 +34,7 @@ namespace RendezSnhu3.ViewModel
             get { return etime; }
             set { etime = value; OnPropertyChanged(nameof(EndTime)); }
         }
+        public DateTime TodaysDate { get { return DateTime.Now; } }
 
         
 
@@ -49,7 +50,7 @@ namespace RendezSnhu3.ViewModel
             DateTime endTime = new DateTime(EndTime.Ticks); 
 
 
-            await EventService.AddEvent(Event.Name, Event.Location, Event.Category, Event.Date, startTime, endTime, Event.Max);
+            await EventService.AddEvent(Event.Name, Event.Location, Event.Description, Event.Category, Event.Date, startTime, endTime, Event.Max);
             Event.ClearFields();
 
         }
